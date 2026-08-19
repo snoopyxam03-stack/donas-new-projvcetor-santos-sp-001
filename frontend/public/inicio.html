@@ -84,6 +84,8 @@
     table.vagas td.cod{font-weight:700;color:#111;text-align:center}
     table.vagas td.qtde{font-weight:700;color:#111;text-align:center}
     table.vagas td.vaga{font-weight:600;color:#111}
+    table.vagas tr.grp td{background:var(--dark);color:#fff;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.8px;font-weight:600;font-size:14px;padding:10px 12px}
+    table.vagas tbody tr.grp:nth-child(even) td{background:var(--dark)}
     .vagas-total{text-align:right;margin:0 34px 34px;font-family:'Oswald',sans-serif;font-size:16px;color:#111}
     .vagas-total b{color:var(--ibam-orange)}
 
@@ -194,28 +196,41 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="cod">1001</td><td class="vaga">ADMINISTRADOR</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">2</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1002</td><td class="vaga">ARQUITETO</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">4</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1003</td><td class="vaga">ASSISTENTE SOCIAL</td><td>Ensino Superior</td><td>R$ 5.516,46 + 1100 (auxílio alimentação) = 6.616,46 equivalente ao nível P</td><td>30 horas semanais.</td><td class="qtde">10</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1004</td><td class="vaga">AUDITOR FISCAL DE TRIBUTOS MUNICIPAIS</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">2</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1005</td><td class="vaga">BIBLIOTECÁRIO</td><td>Ensino Superior</td><td>R$ 5.516,46 + 1100 (auxílio alimentação) = 6.616,46 equivalente ao nível P</td><td>40 horas semanais.</td><td class="qtde">4</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1006</td><td class="vaga">BIOMÉDICO</td><td>Ensino Superior</td><td>R$ 5.516,46 + 1100 (auxílio alimentação) = 6.616,46 equivalente ao nível P</td><td>40 horas semanais.</td><td class="qtde">3</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1007</td><td class="vaga">ECONOMISTA</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1008</td><td class="vaga">ENFERMEIRO</td><td>Ensino Superior</td><td>R$ 8.292,55 + 1100 (auxílio alimentação) = 9.392,55 equivalente ao nível Q</td><td>40 horas semanais</td><td class="qtde">15</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1009</td><td class="vaga">ENGENHEIRO AGRÔNOMO</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1010</td><td class="vaga">ENGENHEIRO CIVIL</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">6</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1011</td><td class="vaga">ENGENHEIRO MECÂNICO</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1012</td><td class="vaga">ENGENHEIRO SANITARISTA</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1013</td><td class="vaga">FARMACÊUTICO</td><td>Ensino Superior</td><td>R$ 5.516,46 + 1100 (auxílio alimentação) = 6.616,46 equivalente ao nível P</td><td>40 horas semanais.</td><td class="qtde">4</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1014</td><td class="vaga">FISIOTERAPEUTA</td><td>Ensino Superior</td><td>R$ 5.516,46 + 1100 (auxílio alimentação) = 6.616,46 equivalente ao nível P</td><td>30 horas semanais.</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1015</td><td class="vaga">FISCAL AMBIENTAL</td><td>Ensino Superior</td><td>R$ 11.071,25 + 1100 (auxílio alimentação) = 12.171,25 equivalente ao nível R</td><td>40 horas semanais.</td><td class="qtde">3</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1016</td><td class="vaga">PSICÓLOGO CLÍNICO</td><td>Ensino Superior</td><td>R$ 5.516,46 + 1100 (auxílio alimentação) = 6.616,46 equivalente ao nível P</td><td>30 horas semanais.</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1017</td><td class="vaga">PSICÓLOGO SOCIAL</td><td>Ensino Superior</td><td>R$ 5.516,46 + 1100 (auxílio alimentação) = 6.616,46 equivalente ao nível P</td><td>30 horas semanais.</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
-            <tr><td class="cod">1018</td><td class="vaga">MÉDICO VETERINÁRIO</td><td>Ensino Superior</td><td>R$ 12.163,43 + 1100 (auxílio alimentação) = R$ 13.263,43 equivalente ao nível S</td><td>40 horas semanais</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
+            <tr class="grp"><td colspan="7">Ensino Fundamental</td></tr>
+            <tr><td class="cod">601</td><td class="vaga">AGENTE DE PORTARIA</td><td>Ensino Fundamental Completo</td><td>R$ 2.191,01 + R$ 1.100,00 (auxílio alimentação) = R$ 3.291,01, equivalente ao nível C</td><td>40 horas semanais</td><td class="qtde">10</td><td class="center">R$ 54,30</td></tr>
+            <tr><td class="cod">606</td><td class="vaga">INSPETOR DE ALUNOS</td><td>Ensino Fundamental Completo</td><td>R$ 2.981,16 + R$ 1.100,00 (auxílio alimentação) = R$ 4.081,16, equivalente ao nível G</td><td>40 horas semanais</td><td class="qtde">22</td><td class="center">R$ 54,30</td></tr>
+            <tr><td class="cod">607</td><td class="vaga">MOTORISTA</td><td>Ensino Fundamental</td><td>R$ 2.981,16 + R$ 1.100,00 (auxílio alimentação) = R$ 4.081,16, equivalente ao nível G</td><td>40 horas semanais</td><td class="qtde">10</td><td class="center">R$ 54,30</td></tr>
+            <tr><td class="cod">614</td><td class="vaga">TRATADOR DE ANIMAIS</td><td>Ensino Fundamental Completo</td><td>R$ 2.191,01 + R$ 1.100,00 (auxílio alimentação) = R$ 3.291,01, equivalente ao nível C</td><td>40 horas semanais</td><td class="qtde">4</td><td class="center">R$ 54,30</td></tr>
+
+            <tr class="grp"><td colspan="7">Ensino Médio</td></tr>
+            <tr><td class="cod">602</td><td class="vaga">AUXILIAR VETERINÁRIO</td><td>Ensino Médio</td><td>R$ 2.981,16 + R$ 1.100,00 (auxílio alimentação) = R$ 4.081,16, equivalente ao nível G</td><td>40 horas semanais</td><td class="qtde">2</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">603</td><td class="vaga">ELETRICISTA</td><td>Ensino Médio</td><td>R$ 2.981,16 + R$ 1.100,00 (auxílio alimentação) = R$ 4.081,16, equivalente ao nível G</td><td>40 horas semanais</td><td class="qtde">2</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">604</td><td class="vaga">FISCAL DE POSTURAS</td><td>Ensino Médio</td><td>R$ 4.834,10 + R$ 1.100,00 (auxílio alimentação) = R$ 5.934,10, equivalente ao nível N</td><td>40 horas semanais</td><td class="qtde">10</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">605</td><td class="vaga">GUIA DE TURISMO REGIONAL</td><td>Ensino Médio</td><td>R$ 4.451,42 + R$ 1.100,00 (auxílio alimentação) = R$ 5.551,42, equivalente ao nível M</td><td>40 horas semanais</td><td class="qtde">5</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">608</td><td class="vaga">OPERADOR SOCIAL</td><td>Ensino Médio</td><td>R$ 4.101,84 + R$ 1.100,00 (auxílio alimentação) = R$ 5.201,84, equivalente ao nível L</td><td>40 horas semanais</td><td class="qtde">11</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">609</td><td class="vaga">RECEPCIONISTA BILÍNGUE</td><td>Ensino Médio</td><td>R$ 4.101,84 + R$ 1.100,00 (auxílio alimentação) = R$ 5.201,84, equivalente ao nível L</td><td>40 horas semanais</td><td class="qtde">2</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">610</td><td class="vaga">SECRETÁRIO DE UNIDADE ESCOLAR</td><td>Ensino Médio</td><td>R$ 4.101,84 + R$ 1.100,00 (auxílio alimentação) = R$ 5.201,84, equivalente ao nível L</td><td>40 horas semanais</td><td class="qtde">10</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">611</td><td class="vaga">TÉCNICO EM AGRIMENSURA</td><td>Médio Completo e Curso Técnico</td><td>R$ 3.491,71 + R$ 1.100,00 (auxílio alimentação) = R$ 4.591,71, equivalente ao nível I</td><td>40 horas semanais</td><td class="qtde">2</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">612</td><td class="vaga">TÉCNICO DE EDIFICAÇÕES</td><td>Médio Completo e Curso Técnico</td><td>R$ 3.491,71 + R$ 1.100,00 (auxílio alimentação) = R$ 4.591,71, equivalente ao nível I</td><td>40 horas semanais</td><td class="qtde">1</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">613</td><td class="vaga">TÉCNICO DE SEGURANÇA DO TRABALHO</td><td>Médio Completo e Curso Técnico</td><td>R$ 3.491,71 + R$ 1.100,00 (auxílio alimentação) = R$ 4.591,71, equivalente ao nível I</td><td>40 horas semanais</td><td class="qtde">2</td><td class="center">R$ 67,90</td></tr>
+            <tr><td class="cod">1101</td><td class="vaga">OFICIAL DE ADMINISTRAÇÃO</td><td>Ensino Médio</td><td>R$ 3.782,98 + R$ 1.100,00 (auxílio alimentação) = R$ 4.882,98, equivalente ao nível I</td><td>40 horas semanais</td><td class="qtde">50</td><td class="center">R$ 67,90</td></tr>
+
+            <tr class="grp"><td colspan="7">Ensino Superior</td></tr>
+            <tr><td class="cod">101</td><td class="vaga">PROFESSOR ADJUNTO I</td><td>Ensino Superior</td><td>R$ 3.220,50 + R$ 550,00 (auxílio alimentação) = R$ 3.770,50, equivalente ao nível PM1</td><td>105h aulas mensais</td><td class="qtde">167</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">102</td><td class="vaga">PROFESSOR ADJUNTO II - CIÊNCIAS</td><td>Ensino Superior</td><td>R$ 3.260,50 + R$ 550,00 (auxílio alimentação) = R$ 3.810,50, equivalente ao nível P1</td><td>105h aulas mensais</td><td class="qtde">1</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">103</td><td class="vaga">PROFESSOR ADJUNTO II - EDUCAÇÃO ESPECIAL</td><td>Ensino Superior</td><td>R$ 3.260,50 + R$ 550,00 (auxílio alimentação) = R$ 3.810,50, equivalente ao nível P1</td><td>105h aulas mensais</td><td class="qtde">19</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">104</td><td class="vaga">PROFESSOR ADJUNTO II - LIBRAS</td><td>Ensino Superior</td><td>R$ 3.260,50 + R$ 550,00 (auxílio alimentação) = R$ 3.810,50, equivalente ao nível P1</td><td>105h aulas mensais</td><td class="qtde">8</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">105</td><td class="vaga">PROFESSOR ADJUNTO II - LÍNGUA PORTUGUESA</td><td>Ensino Superior</td><td>R$ 3.260,50 + R$ 550,00 (auxílio alimentação) = R$ 3.810,50, equivalente ao nível P1</td><td>105h aulas mensais</td><td class="qtde">11</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">106</td><td class="vaga">PROFESSOR ADJUNTO II - MATEMÁTICA</td><td>Ensino Superior</td><td>R$ 3.260,50 + R$ 550,00 (auxílio alimentação) = R$ 3.810,50, equivalente ao nível P1</td><td>105h aulas mensais</td><td class="qtde">10</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">701</td><td class="vaga">ADVOGADO</td><td>Ensino Superior</td><td>R$ 9.406,40 + R$ 1.100,00 (auxílio alimentação) = R$ 10.506,40 (nível 1 grau 1)</td><td>30 horas semanais</td><td class="qtde">4</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">901</td><td class="vaga">MÉDICO CIRURGIÃO GERAL</td><td>Ensino Superior</td><td>R$ 6.631,71 / R$ 7.848,06 / R$ 10.222,57 / R$ 12.047,09 / R$ 13.263,43</td><td>20h / 24h / 30h / 36h / 40h semanais</td><td class="qtde">5</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">902</td><td class="vaga">MÉDICO PSIQUIATRA - SAÚDE OCUPACIONAL</td><td>Ensino Superior</td><td>R$ 12.163,43</td><td>40 horas semanais</td><td class="qtde">2</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">903</td><td class="vaga">MÉDICO INFECTOLOGISTA</td><td>Ensino Superior</td><td>R$ 6.631,71 / R$ 7.848,06 / R$ 10.222,57 / R$ 12.047,09 / R$ 13.263,43</td><td>20h / 24h / 30h / 36h / 40h semanais</td><td class="qtde">3</td><td class="center">R$ 92,00</td></tr>
+            <tr><td class="cod">904</td><td class="vaga">MÉDICO PEDIATRA AMBULATORIAL</td><td>Ensino Superior</td><td>R$ 6.631,71 / R$ 10.222,57 / R$ 13.263,43</td><td>20h / 30h / 40h semanais</td><td class="qtde">8</td><td class="center">R$ 92,00</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="vagas-total">Total de vagas: <b>61</b></div>
+      <div class="vagas-total">Total de vagas: <b>381</b></div>
     </div>
   </div>
 
