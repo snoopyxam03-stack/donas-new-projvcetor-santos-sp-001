@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only static page verification of /inicio.html (IBAM single concurso detail page for Santos - Concurso Público 74/2026 - SEPLA-RH). All requested content, data-testids and PDF links verified against the live preview URL. Page renders as a SINGLE concurso detail (not a list), matching the IBAM layout.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "verified": {
+    "single_detail_page": "Exactly 1 [data-testid=concurso-title] on page; no repeating list of concurso cards.",
+    "concurso_header": "Brasão Santos + label 'Concurso Público' + title 'SANTOS - CONCURSO PÚBLICO - 74/2026 – SEPLA-RH' + 'Inscrições de 22/07/2026 a 20/08/2026' + green 'INSCRIÇÃO ONLINE' button href=/inscricao (data-testid=inscricao-online-btn).",
+    "info_gerais": "All 4 lines present: Inscrições 22/07/2026 a 20/08/2026; Pedidos de Isenção 22/07/2026 a 23/07/2026; Situação: Em andamento; Vencimento dos Boletos: 21/08/2026.",
+    "publicacoes": "4 PDF links present with correct hrefs (doc-01 /docs/edital.pdf, doc-02 /docs/resultado-isencao.pdf, doc-03 /docs/retificacao-isencao.pdf, doc-04 /docs/respostas-impugnacao.pdf) and correct labels 01-04.",
+    "pdf_http_status": "All 4 PDFs return HTTP 200 (edital 1.09MB, resultado-isencao 252KB, retificacao-isencao 256KB, respostas-impugnacao 432KB).",
+    "vagas_table": "18 tbody rows (cod 1001..1018) with ADMINISTRADOR qtde=2, ENFERMEIRO qtde=15, MÉDICO VETERINÁRIO row 1018 present. Total de vagas: 61 displayed.",
+    "layout_elements": "top-nav, brand-logo (IBAM), area-candidato-btn, footer-nav, whatsapp-float all present exactly once; blue hero band renders."
+  },
+  "test_report_links": ["/app/test_reports/screenshots/inicio_detail.png"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "index.html contains a page-loader spinner + a script that hides #root. Since /inicio.html is a static HTML with no React root, this is only used as a redirect shim, which is fine, but note the meta refresh + JS redirect duplication (harmless).",
+    "Some anchors in top-nav and footer use href='#' as placeholders. Not a bug per spec (only /inicio.html and /inscricao are required), but consider disabling styles or adding aria-disabled until real routes exist."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Home is now a static single-detail page at /frontend/public/inicio.html (root redirects). All requested data-testids exist. If future iterations restore a list of concursos, be aware that the current template intentionally renders only ONE concurso card."
+}
