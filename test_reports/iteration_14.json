@@ -1,0 +1,55 @@
+{
+  "summary": "Revalidação mobile da home / (inicio.html) em iPhone (390x844) e Android Pixel (412x915). Todos os 7 critérios de aceitação PASSARAM em ambos os dispositivos. Fix da meta viewport duplicada e do bloco donas-home-mobile-fix estão aplicados e funcionando corretamente.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Home / mobile header", "issues": ["Área do header aparece vazia em mobile: logo Instituto Avalia e menu hamburguer estão gated atrás de breakpoint lg: e não aparecem <=767px. Drawer markup existe (ul.menu.min-h-full.w-80) mas nenhum trigger visível. Não bloqueia layout, mas usuário mobile fica sem navegação. Considerar mostrar logo + botão hamburguer no mobile."]}
+    ]
+  },
+  "validation_results": {
+    "iphone_390x844": {
+      "meta_viewport_count": 1,
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "no_horizontal_overflow": true,
+      "donas_home_mobile_fix_exists": true,
+      "desktop_horizontal_menu_display_none": true,
+      "cta_button_width_px": 366,
+      "cta_button_width_ok": true,
+      "screenshot_ok": true
+    },
+    "android_412x915": {
+      "meta_viewport_count": 1,
+      "innerWidth": 412,
+      "scrollWidth": 412,
+      "no_horizontal_overflow": true,
+      "donas_home_mobile_fix_exists": true,
+      "desktop_horizontal_menu_display_none": true,
+      "cta_button_width_px": 388,
+      "cta_button_width_ok": true,
+      "screenshot_ok": true
+    }
+  },
+  "notes": [
+    "Selector .menu.menu-horizontal/ul.menu-horizontal NÃO existe no markup (retorna 0 elementos). O menu desktop é um <div> com Tailwind 'hidden justify-end gap-x-6 lg:flex' cujo parent tem display:none em <1024px via Tailwind responsive utilities — portanto o menu horizontal desktop ESTÁ oculto em mobile mesmo sem a regra custom do bloco donas-home-mobile-fix atuar. A regra CSS custom acaba sendo um no-op para esse selector, mas não causa problema.",
+    "Screenshot inicial via CDP mostrava layout desktop porque page.screenshot() da Playwright usa o viewport nativo do context, não a emulação CDP. Ao usar page.set_viewport_size(390x844) o screenshot renderizou corretamente layout mobile."
+  ],
+  "test_report_links": [
+    "/app/test_reports/screenshots/home_mobile_390_native.png",
+    "/app/test_reports/screenshots/home_mobile_412_native.png"
+  ],
+  "action_items": [
+    "(Opcional/UX) Adicionar visibilidade do logo Instituto Avalia + botão hamburguer no header mobile para dar acesso ao drawer de navegação. Atualmente header parece vazio em <=1024px."
+  ],
+  "critical_code_review_comments": [
+    "O bloco #donas-home-mobile-fix mira selectors daisyUI (.menu.menu-horizontal, ul.menu-horizontal) que não existem no DOM real da página — regras não têm efeito. O ocultamento do menu desktop em mobile funciona por acidente através das utilitárias Tailwind 'hidden lg:flex' já existentes no markup Next.js. Considerar remover/simplificar o bloco custom se ele não estiver adicionando valor, ou ajustar seletores para o markup real (div.hidden.lg:flex)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "7/7 mobile criteria pass (100%)"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "iteration_13 validou /inscricao/* (6/7). iteration_14 validou home / mobile (7/7). Todo o fluxo público mobile validado. Se novos bugs surgirem apenas em rotas específicas, testar isoladamente."
+}

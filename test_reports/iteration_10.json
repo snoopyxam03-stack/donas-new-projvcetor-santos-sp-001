@@ -1,0 +1,31 @@
+{
+  "summary": "Tested the /inscricao/contato error-box visibility bug. Scenario 1 (Celular empty): the .erro-campos-donas element IS created in the Shadow DOM and URL correctly stays on /inscricao/contato, BUT the box is NOT visually visible — its computed style shows visibility:hidden and its bounding rect is at left=-735 (off-screen). Screenshots confirm no red box appears anywhere under the Próximo button. Scenario 2 (all fields valid): correctly navigates to /inscricao/endereco and no error box is created. So the bug fix did NOT resolve the visibility issue.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "inscricao-contato.html - mostrarErroCampos() (~line 725)",
+        "issue": "The error box is inserted into the WRONG step container. There are multiple <div class='horizontal-step-content ng-trigger-horizontalStepTransition'> siblings in the Angular stepper (one per step: Dados pessoais / Contato / Endereço / ...). The current ancestor-search logic that walks up from the Próximo button and inserts the wrapper as next-sibling of the buttons row picks an INACTIVE step container which has computed styles: visibility:hidden AND transform:matrix(1,0,0,1,-1140,0). This means the error box inherits visibility:hidden and is translated -1140px off to the left. Result: DOM has .erro-campos-donas but user sees nothing.",
+        "selector": ".erro-campos-donas (inside fd-formulario shadowRoot)",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix mostrarErroCampos() in /app/frontend/public/inscricao-contato.html: when inserting the wrapper, filter the candidate ancestor .horizontal-step-content divs to only the ACTIVE one — the one whose getComputedStyle has visibility:'visible' AND transform:'none' (or matrix without translate). Alternatively, insert the error wrapper next to the Próximo button's IMMEDIATE row (e.g., button.closest('.d-flex, .row, .form-actions').parentElement) but ensure the chosen ancestor's computed visibility is 'visible'. Safest approach: use position:fixed on the wrapper (or append to document.body/shadowRoot root with position:absolute) so it doesn't inherit the inactive step's visibility/transform.",
+    "After fix, verify getComputedStyle(box).visibility === 'visible' AND box.getBoundingClientRect().left >= 0 AND left < window.innerWidth."
+  ],
+  "critical_code_review_comments": [
+    "The ancestor-walk approach used to locate the buttons row is fragile inside Angular steppers because multiple sibling step-content divs exist simultaneously in the DOM (hidden via visibility+transform). Any code inserting error UI must first confirm it lands inside the currently-active step or bypass the step-content by using a positioning strategy (fixed/absolute + high z-index) that renders in the visible viewport regardless of parent transforms."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "50% (1/2 scenarios PASS — S2 works, S1 fails on visibility)"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Shadow host <fd-formulario>. Wait ~5s after goto. Selectors: #formly_28_input_email_0, #formly_28_input-mask_celular_3, #formly_28_select_meioDeDivulgacao_1. Próximo button: filter shadowRoot buttons by text 'próximo' AND offsetWidth>0 (there are hidden duplicates in inactive step containers). Validation MUST check computed visibility, not just existence. Key inspection payload: getComputedStyle(box).visibility, box.getBoundingClientRect().left/top, and also inspect ALL ancestors up to shadowRoot — the inactive .horizontal-step-content shows visibility:hidden + transform: matrix(1,0,0,1,-1140,0).",
+  "rca of the issue": "The Angular stepper renders ALL step-content <div class='horizontal-step-content'> panels simultaneously in DOM. The active step has visibility:visible + transform:none; inactive steps have visibility:hidden + transform:translateX(-1140px). The mostrarErroCampos() ancestor-walk from the clicked Próximo button lands on an inactive step's container (probably because there are multiple 'Próximo'-like buttons in the DOM, or the walk picks the first matching ancestor which happens to be inactive). The wrapper is then inserted inside that inactive step, inheriting visibility:hidden and the -1140px translate. Reproduction: fill email='gege@gmail.com', leave celular empty, pick any meio option, click Próximo — the box is created with correct HTML/text 'Preencha o campo obrigatório: Celular' but rendered off-screen and invisible. Mitigation: (a) filter ancestor .horizontal-step-content candidates to visibility:visible + transform:none, OR (b) insert error box with position:fixed at bottom-right of viewport, OR (c) append to shadowRoot root instead of walking DOM."
+}

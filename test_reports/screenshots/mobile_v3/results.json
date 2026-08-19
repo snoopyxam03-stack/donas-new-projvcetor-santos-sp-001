@@ -1,0 +1,638 @@
+{
+  "Pixel5_inicio.html": {
+    "data": {
+      "viewportW": 393,
+      "bodyScrollW": 393,
+      "htmlScrollW": 393,
+      "topo": {
+        "h": 400,
+        "w": 393,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "Pixel5_inscricao.html": {
+    "data": {
+      "viewportW": 393,
+      "bodyScrollW": 393,
+      "htmlScrollW": 393,
+      "topo": {
+        "h": 400,
+        "w": 393,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "Pixel5_confirmacao": {
+    "data": {
+      "viewportW": 393,
+      "bodyScrollW": 393,
+      "htmlScrollW": 393,
+      "topo": {
+        "h": 400,
+        "w": 393,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "Pixel5_inscricao-realizada": {
+    "data": {
+      "viewportW": 393,
+      "bodyScrollW": 393,
+      "htmlScrollW": 393,
+      "topo": {
+        "h": 400,
+        "w": 393,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "Pixel5_pagamento-pix": {
+    "data": {
+      "viewportW": 393,
+      "bodyScrollW": 393,
+      "htmlScrollW": 393,
+      "topo": {
+        "h": 400,
+        "w": 393,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "Pixel5_termos.html": {
+    "data": {
+      "viewportW": 393,
+      "bodyScrollW": 393,
+      "htmlScrollW": 393,
+      "topo": {
+        "h": 400,
+        "w": 393,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "iPhone13Pro_inicio.html": {
+    "data": {
+      "viewportW": 390,
+      "bodyScrollW": 390,
+      "htmlScrollW": 390,
+      "topo": {
+        "h": 400,
+        "w": 390,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "iPhone13Pro_inscricao.html": {
+    "data": {
+      "viewportW": 390,
+      "bodyScrollW": 390,
+      "htmlScrollW": 390,
+      "topo": {
+        "h": 400,
+        "w": 390,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "iPhone13Pro_confirmacao": {
+    "data": {
+      "viewportW": 390,
+      "bodyScrollW": 390,
+      "htmlScrollW": 390,
+      "topo": {
+        "h": 400,
+        "w": 390,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "iPhone13Pro_inscricao-realizada": {
+    "data": {
+      "viewportW": 390,
+      "bodyScrollW": 390,
+      "htmlScrollW": 390,
+      "topo": {
+        "h": 400,
+        "w": 390,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "iPhone13Pro_pagamento-pix": {
+    "data": {
+      "viewportW": 390,
+      "bodyScrollW": 390,
+      "htmlScrollW": 390,
+      "topo": {
+        "h": 400,
+        "w": 390,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  },
+  "iPhone13Pro_termos.html": {
+    "data": {
+      "viewportW": 390,
+      "bodyScrollW": 390,
+      "htmlScrollW": 390,
+      "topo": {
+        "h": 400,
+        "w": 390,
+        "display": "block",
+        "bg": "rgba(0, 0, 0, 0)",
+        "bgImage": "linear-gradient(rgb(15, 76, 173) 0%, rgb(46, 120, 237) 100%)"
+      },
+      "logo": {
+        "maxH": "52px",
+        "w": 126.234375,
+        "h": 52,
+        "centerX": 107.9921875,
+        "visible": true
+      },
+      "topLogin": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topMenu": {
+        "display": "none",
+        "rectH": 0
+      },
+      "topoMobile": {
+        "display": "none"
+      },
+      "areaCandidatoVisibleCount": 2,
+      "menuVisible": [],
+      "vlibrasVisibleCount": 0,
+      "vlibrasTotal": 2
+    },
+    "checks": {
+      "1_no_overflow": true,
+      "2_topo_visible": true,
+      "2_topo_blue": true,
+      "3_logo_visible": true,
+      "3_logo_maxH": true,
+      "3_logo_width": true,
+      "3_logo_centered": false,
+      "4_toplogin_hidden": true,
+      "4_area_candidato_hidden": false,
+      "5_topmenu_hidden": true,
+      "5_no_menu_items": true,
+      "6_topomobile_hidden": true,
+      "7_vlibras_hidden": true,
+      "8_header_compact": false
+    },
+    "pass": false
+  }
+}

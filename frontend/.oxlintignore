@@ -1,0 +1,7 @@
+node_modules
+build
+dist
+public/donaspainel
+public/farpapainel
+public/static
+**/*.min.js

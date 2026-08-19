@@ -1,0 +1,155 @@
+[
+  {
+    "codigo": "001",
+    "cargo": "AGENTE DE CONTROLE INTERNO",
+    "escolaridade": "Superior",
+    "salario": "2.964,82",
+    "carga": "40h",
+    "vagas": 1,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "002",
+    "cargo": "AGENTE FISCAL DE TRIBUTOS",
+    "escolaridade": "Médio",
+    "salario": "1.621,00",
+    "carga": "40h",
+    "vagas": 1,
+    "taxa": "135,00"
+  },
+  {
+    "codigo": "003",
+    "cargo": "ASSISTENTE ADMINISTRATIVO EDUCACIONAL",
+    "escolaridade": "Médio",
+    "salario": "1.895,57",
+    "carga": "40h",
+    "vagas": 11,
+    "taxa": "135,00"
+  },
+  {
+    "codigo": "004",
+    "cargo": "AUDITOR FISCAL DE TRIBUTOS MUNICIPAIS",
+    "escolaridade": "Superior",
+    "salario": "1.621,00",
+    "carga": "40h",
+    "vagas": 1,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "005",
+    "cargo": "CONTADOR",
+    "escolaridade": "Superior",
+    "salario": "1.621,00",
+    "carga": "40h",
+    "vagas": 1,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "006",
+    "cargo": "GUARDA MUNICIPAL",
+    "escolaridade": "Médio",
+    "salario": "2.000,00",
+    "carga": "40h",
+    "vagas": 15,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "007",
+    "cargo": "PROFESSOR DE ARTE",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 5,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "008",
+    "cargo": "PROFESSOR DE CIÊNCIAS",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 16,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "009",
+    "cargo": "PROFESSOR DE EDUCAÇÃO FÍSICA",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 13,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "010",
+    "cargo": "PROFESSOR DE EDUCAÇÃO INFANTIL E ENSINO FUNDAMENTAL I",
+    "escolaridade": "Professor",
+    "salario": "3.885,92",
+    "carga": "25h",
+    "vagas": 77,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "011",
+    "cargo": "PROFESSOR DE GEOGRAFIA",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 5,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "012",
+    "cargo": "PROFESSOR DE HISTÓRIA",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 11,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "013",
+    "cargo": "PROFESSOR DE LÍNGUA INGLESA",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 11,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "014",
+    "cargo": "PROFESSOR DE LÍNGUA PORTUGUESA",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 33,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "015",
+    "cargo": "PROFESSOR DE MATEMÁTICA",
+    "escolaridade": "Professor",
+    "salario": "3.108,73",
+    "carga": "20h",
+    "vagas": 27,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "016",
+    "cargo": "PROFESSOR PARA EDUCAÇÃO ESPECIAL INCLUSIVA",
+    "escolaridade": "Professor",
+    "salario": "3.885,92",
+    "carga": "25h",
+    "vagas": 11,
+    "taxa": "160,00"
+  },
+  {
+    "codigo": "017",
+    "cargo": "SECRETÁRIO ESCOLAR",
+    "escolaridade": "Médio",
+    "salario": "1.895,57",
+    "carga": "40h",
+    "vagas": 11,
+    "taxa": "135,00"
+  }
+]

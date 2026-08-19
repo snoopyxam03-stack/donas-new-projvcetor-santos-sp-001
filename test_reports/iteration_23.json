@@ -1,0 +1,35 @@
+{
+  "summary": "Verified desktop menu single-line fix and mobile layout. All 5 pages (inicio, inscricao, confirmacao, inscricao-realizada, pagamento-pix) at 1400x900 have #menu with exactly 4 items all sharing top=233.89px (same line). Mobile viewport 390x844 has no horizontal overflow (scrollWidth=innerWidth=390), #menu hidden (display:none), aviso modal present, and FAZER MINHA INSCRIÇÃO button visible.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Menu 4-item single-line fix on desktop confirmed across all 5 pages. Mobile responsiveness preserved via media query override. Item widths measured ~246px, container ~1004px content width, all 4 fit on one line (left positions 208/454/700/946).",
+  "verification_details": {
+    "desktop_1400x900": {
+      "/": {"menu_count": 4, "same_line": true, "tops": [233.89, 233.89, 233.89, 233.89], "items": ["Área Restrita", "Concursos Públicos", "Processos Seletivos", "Contato"]},
+      "/inscricao.html": {"menu_count": 4, "same_line": true},
+      "/confirmacao.html": {"menu_count": 4, "same_line": true},
+      "/inscricao-realizada.html": {"menu_count": 4, "same_line": true},
+      "/pagamento-pix.html": {"menu_count": 4, "same_line": true}
+    },
+    "mobile_390x844": {
+      "scrollWidth": 390,
+      "innerWidth": 390,
+      "no_horizontal_overflow": true,
+      "menu_display": "none",
+      "aviso_modal_present": true,
+      "inscricao_button_visible": true
+    }
+  }
+}

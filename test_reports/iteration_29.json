@@ -1,0 +1,30 @@
+{
+  "summary": "E2E frontend flow /inscricao -> /confirmacao -> /inscricao-realizada validated for the Campo Alegre-AL contest. Filled form (NOME=Teste Silva, CPF 529.982.247-25, DATA 10/05/1990, SEXO=0, CEP 57250-000 with 3s autofill wait, filled missing LOGRADOURO/BAIRRO manually since ViaCEP returned only CIDADE/UF for this generic city CEP, NUMERO=100, DOC_TIPO=RG, CELULAR, EMAIL, uploaded tiny PNG to DOC_FRENTE+DOC_VERSO), selected VAGA=006 via [data-testid=select-vaga] and submitted. On /confirmacao, [data-testid=c-vaga] = '006 - GUARDA MUNICIPAL - R$ 160,00' and [data-testid=c-inscricao] = 'PMCA-2026-224725' (matches ^PMCA-2026-\\d{6}$; 224725 = last 6 digits of CPF 52998224725). After clicking [data-testid=btn-confirmar-inscricao], /inscricao-realizada showed the SAME protocolo and vaga label. All required assertions PASSED.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/inscricao-realizada", "issues": ["Header subtitle reads 'CONCURSO PÚBLICO PARA A SECRETARIA MUNICIPAL DE SAÚDE EDITAL Nº. 003/2026-SMA' but the concurso in /confirmacao is 'Município de Campo Alegre (AL) - Edital 003/2026' and vaga is Guarda Municipal. Legacy hardcoded title should be aligned with the current Campo Alegre PMCA contest for consistency."]},
+      {"screen": "/inscricao (CEP autofill)", "issues": ["For CEP 57250-000 (city-generic), ViaCEP returns only cidade/uf; LOGRADOURO and BAIRRO remain blank yet are marked required — users must type them. Not a bug but worth showing an inline hint when the CEP is a city-only postal code."]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/screenshots/confirmacao_ok.png", "/app/test_reports/screenshots/realizada_ok.png"],
+  "action_items": [
+    "Optional: update /inscricao-realizada header (currently 'SECRETARIA MUNICIPAL DE SAÚDE') to match the Campo Alegre 003/2026 branding used on /confirmacao.",
+    "Optional: for city-only CEPs where logradouro/bairro are absent, focus the LOGRADOURO input and show a small hint so candidates realize they must type it."
+  ],
+  "critical_code_review_comments": [
+    "inscricao.html: dynamic vaga capture via selected <option> textContent + data-price is clean and works correctly for all 17 cargos.",
+    "confirmacao.html: PMCA-2026-<last 6 CPF digits> generator produces a stable, branded protocolo; verified 529.982.247-25 -> PMCA-2026-224725.",
+    "Same protocolo is persisted via sessionStorage and correctly rendered on /inscricao-realizada -> good state syncing between static pages.",
+    "CSP blocks Cloudflare beacon.min.js (harmless third-party analytics), no functional impact."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped)", "frontend": "100% (all requested assertions passed)"},
+  "seed_data_creation": "None (used ephemeral form data; CPF 529.982.247-25).",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Static HTML flow. Form fields use `name` attributes; NOME has NO id, use input[name='NOME']. SEXO is a <select>, use select_option value='0' for MASCULINO. LOGRADOURO/BAIRRO must be filled manually for city-generic CEPs (e.g., 57250-000). Submit button #btn-salvar is disabled until validateForm() passes — fill ALL required fields before clicking. Cache-bust URLs with ?_={ts}. Expected: c-vaga contains code+title+price; c-inscricao matches ^PMCA-2026-\\d{6}$ using last 6 CPF digits.",
+  "rca of the issue": "N/A - previously reported bug (blank Vaga Escolhida + ugly PMVR-<cpf6>-<base36> protocolo) is fixed. Dynamic option textContent capture into __vaga_label + new PMCA-2026-<cpf-last-6> format both work end-to-end and propagate to /inscricao-realizada."
+}

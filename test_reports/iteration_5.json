@@ -1,0 +1,35 @@
+{
+  "summary": "Frontend-only visual regression test of the 'Inscrições' table column alignment in the donas admin panel (SPA hash route #/inscricoes). PASS — all 7 columns (CANDIDATO, CPF, DISPOSITIVO, VALOR, STATUS, INSCRIÇÃO EM, AÇÕES) are correctly aligned with their content. Verified via computed grid-template-columns equality and bounding-box center/edge comparisons between header cells and row cells. All 3 test inscrições render with full data and no regression.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Console warning on Dashboard: Recharts ResponsiveContainer reports width(-1)/height(-1) — chart container has no measurable size on initial mount. Not related to Inscrições alignment, but worth fixing by giving the chart wrapper a defined minHeight/minWidth or aspect ratio."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "test_credentials": "Admin painel: donas / Seinao10@@ (used as provided)",
+  "seed_data_creation": "None — used existing 3 test inscrições (JOAO DA SILVA SANTOS, MARIA OLIVEIRA COSTA, PEDRO HENRIQUE LIMA).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Donas admin panel uses hash-routing under /donaspainel/. Login via 2 inputs (user, password) + 'Entrar' button. The .dp-table-card uses CSS grid (.dp-tbl-head and .dp-tbl-row share grid-template-columns: 1.7fr 1fr .9fr .8fr 1.1fr 1.1fr .9fr). Header/row alignment per column: 1 left, 2-6 center, 7 right. Verified computed grids identical across head/rows and all per-column alignment offsets are within sub-pixel (0.0) tolerance.",
+  "visual_verification": {
+    "head_grid": "328.656px 193.328px 174px 154.672px 212.672px 212.656px 174px",
+    "row_grid_all_3_rows": "328.656px 193.328px 174px 154.672px 212.672px 212.656px 174px",
+    "col_alignment_results": {
+      "CANDIDATO (left)": "dx_left=0.0px",
+      "CPF (center)": "dx_center=0.0px",
+      "DISPOSITIVO (center)": "dx_center=0.0px",
+      "VALOR (center)": "dx_center=0.0px",
+      "STATUS (center)": "dx_center=0.0px",
+      "INSCRIÇÃO EM (center)": "dx_center=0.0px",
+      "AÇÕES (right)": "right_edge_head=1857.0, right_edge_row=1857.0 (matching)"
+    }
+  },
+  "rca of the issue": "Not applicable — adjustment verified working. The previously applied CSS override (grid-template-columns shared + nth-child text-align per column) is correctly producing pixel-aligned columns."
+}

@@ -1,0 +1,39 @@
+{
+  "summary": "Revisão mobile (iOS iPhone 13 @390px e Android Pixel 7 @412px) das 8 páginas públicas do site Donas ENARE via Playwright (devices reais + UA + DPR). Inspeção automatizada de overflow horizontal, sidebar/hamburguer, menu do candidato (#enareUserName/#enareUserMenu), modal PIX, formulários (selects Choices, inputs, radios, botão Salvar) e tabelas. Screenshots full_page de cada combinação salvos em /app/test_reports/screenshots/. Nenhuma página apresentou scroll horizontal nem tabelas estourando largura. Forms cabem bem no viewport em ambas plataformas. Encontrei UM problema relevante e acionável: home.html e cronograma.html não possuem menu mobile — o <aside class='sidebar'> usa 'hidden lg:flex', então em <1024px o usuário fica SEM navegação alguma (não há hamburger substituto).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "home.html / cronograma.html — Sidebar", "issue": "Sidebar tem classes 'hidden lg:flex flex-col bg-sidebar h-screen sticky top-0 shrink-0 transition-[width] duration-200 w-60'. Em mobile (iOS 390px e Android 412px) ela fica oculta e NÃO há hamburguer/menu mobile substituto. O usuário mobile não consegue navegar entre as páginas a partir de home.html ou cronograma.html.", "selector": "aside.sidebar (hidden lg:flex)", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "minhas-inscricoes.html (iOS + Android)", "issues": ["Menu do candidato (#enareUserName) não foi exibido na renderização automatizada — provavelmente depende de localStorage('enare_nome'). Não bloqueia, mas vale validar visualmente que o dropdown 'Sair' abre dentro do viewport quando existe um usuário logado."]}
+    ]
+  },
+  "per_page_results": {
+    "home.html":                       {"iOS": "ISSUE — sem menu mobile (sidebar hidden lg:flex, sem hamburger). docW=winW=390, sem overflow horizontal, sem tabelas estourando.", "Android": "ISSUE — mesmo problema. docW=winW=412."},
+    "cronograma.html":                 {"iOS": "ISSUE — sem menu mobile. Sem overflow.", "Android": "ISSUE — sem menu mobile. Sem overflow."},
+    "inscricoes.html":                 {"iOS": "OK — docW=winW=390, sem sidebar, sem overflow, sem tabelas estourando.", "Android": "OK — docW=winW=412."},
+    "minhas-inscricoes.html":          {"iOS": "OK — QR PIX renderizado (#pixQrWrap 226x226 com img), código PIX visível (w=310/winW=390). Sem overflow. Botão 'Pagar' funcional, modal/painel PIX cabe no viewport.", "Android": "OK — QR 226x226, código w=332/winW=412, sem overflow."},
+    "inscricao.html":                  {"iOS": "OK — selects/inputs em ~292px num viewport de 390px, todos dentro. Sem overflow.", "Android": "OK — w~314px num viewport de 412px."},
+    "inscricao-acesso-direto.html":    {"iOS": "OK — selects Choices ~332px, inputs ~330px, botão Salvar 71px (disabled por estar vazio, esperado). Sem overflow.", "Android": "OK — selects ~354px, inputs ~352px, Salvar 71px."},
+    "inscricao-multiprofissional.html":{"iOS": "OK — mesma estrutura do acesso-direto. Sem overflow.", "Android": "OK."},
+    "inscricao-prerequisito.html":     {"iOS": "OK — mesma estrutura. Sem overflow.", "Android": "OK."}
+  },
+  "test_report_links": ["/app/tests/mobile_review.py", "/app/test_reports/mobile_review.json", "/app/test_reports/screenshots/"],
+  "action_items": [
+    "PRIORIDADE ALTA: implementar um hamburger/menu mobile em home.html e cronograma.html (ou alterar a sidebar para abrir como off-canvas em <lg). Hoje, abaixo de 1024px o aside fica 'hidden' e o usuário não tem como navegar — adicionar um botão toggle + drawer (md:hidden) ou copiar o padrão usado nas demais páginas que não dependem da sidebar.",
+    "(Opcional/validação manual) Em minhas-inscricoes, verificar visualmente que o dropdown #enareUserMenu (acionado por #enareUserName) abre dentro do viewport e que o item 'Sair' é acessível em iOS/Android com um usuário logado — não foi reproduzido no teste por falta de localStorage('enare_nome')."
+  ],
+  "critical_code_review_comments": [
+    "home.html e cronograma.html: sidebar com 'hidden lg:flex' sem fallback mobile — quebra UX em telas <1024px.",
+    "Demais páginas públicas (inscricoes, minhas-inscricoes, inscricao*) estão bem responsivas: nenhum overflow horizontal, formulários, QR PIX e botões cabem no viewport tanto em 390px quanto em 412px."
+  ],
+  "updated_files": ["/app/tests/mobile_review.py (criado)"],
+  "success_rate": {"backend": "N/A (frontend-only)", "frontend": "75% (6 de 8 páginas PASS; home/cronograma com issue de menu mobile)"},
+  "seed_data_creation": "Nenhum dado de seed criado. minhas-inscricoes usa a inscrição-exemplo já presente.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Script de varredura mobile pronto em /app/tests/mobile_review.py — usa p.devices['iPhone 13'] e p.devices['Pixel 7'], abre todas as 8 páginas e gera /app/test_reports/mobile_review.json + screenshots. Após o main agent adicionar um menu mobile em home.html/cronograma.html, re-rodar o script para confirmar; checar campos 'sidebar' e 'sidebar_after_toggle' no JSON.",
+  "rca of the issue": "Sidebar única usada como navegação principal em home.html/cronograma.html possui classes Tailwind 'hidden lg:flex' (lg = 1024px). Em viewports menores ela é ocultada via display:none, e nenhum elemento de menu alternativo (hamburger, drawer, navbar mobile) está presente no DOM dessas páginas, deixando o usuário mobile sem acesso à navegação. Mitigação: adicionar botão hamburguer visível em <lg que abra a mesma sidebar como off-canvas (ex.: 'lg:hidden' + JS toggle de classe 'translate-x-0/-translate-x-full' e overlay)."
+}

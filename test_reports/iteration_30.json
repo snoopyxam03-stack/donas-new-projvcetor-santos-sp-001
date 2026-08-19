@@ -1,0 +1,28 @@
+{
+  "summary": "Frontend-only visual regression test on the /confirmacao success modal. Filled and submitted /inscricao.html form, clicked btn-confirmar-inscricao, verified conf-success-modal computed styles, hover transition, and OK button navigation to /inscricao-realizada. ALL checks passed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/success_modal.png"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Non-blocking: Cloudflare beacon script blocked by CSP (script-src). Cosmetic console error only; unrelated to this fix."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Success modal on /confirmacao now uses institutional blue: h3 color rgb(24,88,191); OK button bg rgb(24,88,191), text rgb(255,255,255), border 1px solid rgb(24,88,191); hover bg rgb(15,76,173). Verified end-to-end via inscricao form submission -> confirmacao -> modal -> inscricao-realizada. Full-form E2E works with CPF 529.982.247-25 and vaga value=006 (PMCA-2026 protocol). CEP 57250-000 does not auto-fill LOGRADOURO/BAIRRO -> manual fill required.",
+  "test_results": {
+    "h3Color_rgb(24,88,191)": "PASS",
+    "btnBg_rgb(24,88,191)": "PASS",
+    "btnColor_rgb(255,255,255)": "PASS",
+    "btnBorder_1px_solid_rgb(24,88,191)": "PASS",
+    "hoverBg_rgb(15,76,173)": "PASS",
+    "navigation_to_inscricao-realizada": "PASS"
+  }
+}

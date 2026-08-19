@@ -1,0 +1,43 @@
+{
+  "summary": "Iteration 35 (third-pass mobile header verification). Tested 2 viewports (Pixel 5 393x851 Chrome UA, iPhone 13 Pro 390x844 Safari UA) × 6 public pages (/inicio.html, /inscricao.html, /confirmacao, /inscricao-realizada, /pagamento-pix, /termos.html) with cache-bust ?_={ts}, wait_until=domcontentloaded + 1.5s post-load wait. ALL 8 assertions from iteration_34 now PASS on 12/12 (viewport × page) combinations. The updated <style id='__mobile_header_fix'> with `body #Topo, div#Topo` specificity + !important overrides successfully collapses the header to a compact blue bar with the IGEDUC logo centered.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "detailed_results": {
+    "viewports_tested": ["Pixel5 393x851 Chrome UA", "iPhone13Pro 390x844 Safari UA"],
+    "pages_tested": ["/inicio.html","/inscricao.html","/confirmacao","/inscricao-realizada","/pagamento-pix","/termos.html"],
+    "assertions_per_combo": {
+      "1_no_overflow (bodySW & docSW <= vw+2)": "12/12 PASS",
+      "2_topo_height_40_100": "12/12 PASS (measured ~65-75px)",
+      "2_topo_blue_bg (gradient/blue channel)": "12/12 PASS",
+      "3_logo_img_h_30_60": "12/12 PASS (~52px)",
+      "3_logo_img_w_ok (<=vw*0.9)": "12/12 PASS",
+      "3_logo_centered (+/-15% of vw/2)": "12/12 PASS",
+      "4_TopLogin_display_none": "12/12 PASS",
+      "4_areacandidato_hidden": "12/12 PASS",
+      "5_TopMenu_display_none": "12/12 PASS",
+      "6_TopoMobile_display_none": "12/12 PASS",
+      "7_vlibras_hidden": "12/12 PASS",
+      "8_header_footprint_<=100": "12/12 PASS"
+    },
+    "screenshot_dir": "/app/test_reports/screenshots/mobile_v4/",
+    "cropped_header_screenshots": "*_header.png (y=0..120 crop) generated per (viewport × page)",
+    "raw_measurements_json": "/app/test_reports/screenshots/mobile_v4/results.json"
+  },
+  "test_report_links": ["/app/test_reports/screenshots/mobile_v4/results.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Mobile header fix now correctly uses higher-specificity selectors (`body #Topo`, `div#Topo`) with !important — prior iteration failed because base `#Topo{height:400px!important}` and `#Logo{float:left;width:200px}` needed matching specificity to override.",
+    "The centered inline-block approach on #Logo h1 a with text-align:center on #Logo works robustly across both Chrome-Android and Safari-iOS UAs.",
+    "VLibras and menu suppression via multiple attribute-selectors is comprehensive."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped as instructed)", "frontend": "100% (96/96 assertion outcomes across 12 combos)"},
+  "seed_data_creation": "None.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Mobile header on all 6 public pages is now fully compliant with the compact-header spec (single centered logo on blue background, height ~65-75px, no menu / no Área do Candidato / no VLibras / no horizontal overflow). No further mobile-header regressions observed. Scope was strictly limited to header — confirmacao 2-col stacking and 38px button heights were NOT re-tested per instructions."
+}

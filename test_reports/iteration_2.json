@@ -1,0 +1,29 @@
+{
+  "summary": "Validated the 'Salvar' button enable/disable + Termo de Aceite + confirm modal flow on the 3 ENARE inscription pages (acesso-direto, multiprofissional, prerequisito). All 6 acceptance criteria PASSED on all 3 pages (18/18 checks).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Validation script (#enare-require-validation) is duplicated across 3 HTML files (~50 lines x3). Recommend extracting to a shared /public/js/enare-validation.js include to keep parity. CSP allows external script only via specific allowlist; current 'unsafe-inline' + data: blocks external CDN scripts (Cloudflare beacon, challenge-platform main.js) — those errors are expected and harmless.",
+    "Validation runs on setInterval(600ms) + change/input/click listeners — fine for small pages but slightly wasteful; could rely on event delegation alone after initial render.",
+    "questionFilled() considers a .div-pergunta required only if it contains a .text-danger; this convention is consistent across the 3 pages and works as intended.",
+    "Note on requirements: the request mentions 'Especialidade (Vaga)' as part of the reveal flow, but #vagaEspecialidade only exists in inscricao-acesso-direto.html. inscricao-multiprofissional.html and inscricao-prerequisito.html reveal the form right after choosing the Residência (no second select). This appears intentional and validation still works correctly on those pages."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped)", "frontend": "100%"},
+  "test_credentials": "none (public static pages)",
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Tested 3 pages with a Playwright script that (1) verifies Save disabled on load, (2) opens Choices.js cargo dropdown via .choices__inner.click() and selects the first enabled .choices__item--choice, (3) selects #vagaEspecialidade index 1 if visible, (4) auto-fills every visible .div-pergunta containing .text-danger (selects via native value+change event + manually updating .choices__list--single innerHTML; radios prefer 'Não' label; texts get 'Teste'), (5) handles #cidadeProva (depends on estado choice), (6) toggles #termoAceiteCheck and asserts Save enable/disable, (7) clicks Salvar and asserts [data-testid=confirm-inscricao-modal] appears, (8) unchecks termo and asserts Save disabled. CSP blocks cloudflare/cdn-cgi scripts — expected, harmless. Multiprofissional and prerequisito pages do NOT have #vagaEspecialidade (only acesso-direto does).",
+  "test_results_per_page": {
+    "inscricao-acesso-direto.html": {"load_save_disabled": "PASS", "save_disabled_when_empty": "PASS", "save_disabled_no_termo": "PASS", "save_enabled_when_all_filled_and_termo": "PASS", "confirm_modal_opens": "PASS", "save_disabled_after_uncheck_termo": "PASS"},
+    "inscricao-multiprofissional.html": {"load_save_disabled": "PASS", "save_disabled_when_empty": "PASS", "save_disabled_no_termo": "PASS", "save_enabled_when_all_filled_and_termo": "PASS", "confirm_modal_opens": "PASS", "save_disabled_after_uncheck_termo": "PASS"},
+    "inscricao-prerequisito.html": {"load_save_disabled": "PASS", "save_disabled_when_empty": "PASS", "save_disabled_no_termo": "PASS", "save_enabled_when_all_filled_and_termo": "PASS", "confirm_modal_opens": "PASS", "save_disabled_after_uncheck_termo": "PASS"}
+  }
+}

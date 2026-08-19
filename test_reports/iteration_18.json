@@ -1,0 +1,23 @@
+{
+  "summary": "Tested PIX payment page bug fix (SW/cache cleanup + retry fetch). Both scenarios PASS. Scenario 1: fresh context loaded /inscricao/pagamento/pix -> POST /api/pix/generate returned within ~1s, QR image rendered (naturalWidth=392px, data:image/png;base64), PIX code 155 chars starting with '00020101021126440014br.gov.bcb.pix0122danielmmm950@gmail.com...', Copiar/Imprimir/Voltar buttons visible. Scenario 2: pre-seeded a stale Cache Storage entry ('stale-v1') then reloaded — cleanup script at top of HTML unregistered SWs and deleted all caches (caches.keys()=[] after reload), then fresh fetch of /api/pix/generate returned real PIX code (no STALE marker).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/inscricao/pagamento/pix", "issues": ["Campos Nome e CPF exibem '—' mesmo com localStorage['nome']/'cpf' setados — possivelmente lê outras chaves (ex: __nome/__cpf). Não bloqueia o fluxo de pagamento, mas seria bom padronizar."]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/iteration_18.json"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Console warning benigno: '[pix] tentativa 1 Failed to fetch' aparece 1x antes do retry — o retry funciona (segunda tentativa OK). Considerar suprimir o warn na 1a falha para não poluir DevTools do usuário final.",
+    "Campos Nome/CPF do resumo ficam vazios ('—') porque não estão lendo as chaves esperadas do localStorage — verificar mapeamento."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "seed_data_creation": "localStorage: nome, cpf, __protocolo, __cargo_label, __valor_inscricao_num; Cache Storage stale-v1 (limpo pelo cleanup script)",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Backend /api/pix/generate 100% OK (147-155 chars pix_code, ~3.4KB QR PNG base64). Frontend PIX page HTML contém cleanup SW+caches no topo (verificado via curl) e gerarPix() com retry+cache-buster. QR renderiza em ~1s. Fix do bug 'travado em Carregando QR' está confirmado."
+}

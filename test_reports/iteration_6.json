@@ -1,0 +1,25 @@
+{
+  "summary": "Frontend-only verification of Donas admin panel Dashboard 'Atividade em tempo real' feed. Logged in with donas/Seinao10@@, navigated to Dashboard, and confirmed the registration event appears as 'Cadastro realizado: ANA BEATRIZ FERREIRA' (1 min atrás). The event is no longer rendered as 'Novo acesso desktop/mobile'.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Dashboard", "issues": ["Recharts console warnings: 'The width(-1) and height(-1) of chart should be greater than 0' — chart containers briefly render with 0 width/height. Non-blocking but noisy."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Bundle servido usa fallback ev.description para kind 'cadastro' — funciona, mas idealmente o bundle React deveria ser rebuildado para reconhecer o novo kind e usar eventTitle/eventSub do EVENT_DEFS (mais resiliente caso a descrição do backend mude).",
+    "Recharts containers iniciando com width/height -1 produzem warnings ao montar — adicionar minWidth/minHeight ou skeleton até as dimensões estarem prontas."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "N/A (skipped)", "frontend": "100%" },
+  "test_credentials": "Painel: donas / Seinao10@@",
+  "seed_data_creation": "Nenhum seed criado pelo teste (evento de ANA BEATRIZ FERREIRA já existia, conforme review_request).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Login flow: dois inputs (usuário texto + senha) + botão 'Entrar' (role=button name='Entrar'). Após login redireciona para #/dashboard. Seção 'Atividade em tempo real' encontra-se à direita, embaixo do bloco Funil de conversão. Evento atual confirmado: 'Cadastro realizado: ANA BEATRIZ FERREIRA — 1 min atrás'. Nenhum 'Novo acesso' associado.",
+  "rca of the issue": "N/A — funcionalidade verificada e aprovada."
+}

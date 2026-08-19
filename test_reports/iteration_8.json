@@ -1,0 +1,20 @@
+{
+  "summary": "Validated the 'limparSelectsPreSelecionados()' script in inscricao-contato.html and inscricao.html. All 3 tests passed: (1) Meio de Divulgação select renders empty on load (value='', selectedIndex=-1) instead of a pre-selected option like 'E-mail Marketing'. (2) User can manually select an option ('Indicação') and the value persists both in the DOM (after 500ms and 2500ms) and in localStorage under key formly_28_select_meioDeDivulgacao_1 — the clearing script did NOT re-zero the user's choice. (3) On /inscricao (Dados Pessoais) both the Sexo select (value='', selectedIndex=-1, no Masculino/Feminino pre-selected) and Documento de Identificação select (#doc-tipo, value='', showing 'Selecione...') load clean.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Minor: In TEST 1 the Meio de Divulgação select has selectedIndex=-1 rather than 0. There is no 'Selecione...' placeholder <option> in that specific select (the 7 options start directly with 'E-mail Marketing'). The user story mentioned expected selectedIndex=0. Current behavior (nothing selected, empty value, UI shows blank) satisfies the underlying intent (no pre-selection leak), but E1 may want to add a placeholder <option value=''>Selecione...</option> for UX consistency with #doc-tipo."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Shadow DOM host is <fd-formulario>; use document.querySelector('fd-formulario').shadowRoot.querySelector(...). Wait ~4s after goto for the bootstrap timeouts (400/1500/3000ms) to complete. localStorage key = 'inscricao_donas_formdata_v1'. Selectors validated: #formly_28_select_meioDeDivulgacao_1 (contato page), #formly_16_select_#sexo_6 (needs [id='formly_16_select_#sexo_6'] attribute selector because of the # in id), #doc-tipo (dados pessoais page)."
+}

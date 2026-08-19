@@ -1,0 +1,33 @@
+{
+  "summary": "Verified iteration_15 fix for public portal access tracking. Bug (novos acessos not registered in admin panel) is FIXED. All 5 test scenarios PASS: (1) fresh home load POSTs /api/track/access with visitor_id, gets 200 {ok:true}, no CSP errors, localStorage.__visitor_id and sessionStorage.__track_access_done are set; (2) reload of home does NOT POST again (sessionStorage dedup); (3) direct /inscricao access does NOT POST (path early-return); (4) two distinct browser contexts produce two distinct visitor_ids, both POST 200; (5) admin GET /api/admin/accesses (endpoint is /api/admin/auth/login for token) returns all 4 test visitor_ids just created.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/admin/accesses", "issue": "Same visitor_id (vms0nvpwv_0oxrms2z) appears twice in list - dedup window is 30 min but a duplicate slipped through in one case. Non-blocking, but the $gte window logic in admin_routes.py L197-210 should be reviewed if this repeats."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [
+      {"flow": "tracking home load", "issue": "One console warning observed in later test contexts: '[track] /api/track/access TypeError: Failed to fetch' from inline HTML line 350 - however, the actual POST always succeeded with status 200 and visitor_id was stored in DB. Likely a stale early fetch before window.REACT_APP_BACKEND_URL was resolved or a duplicate inline script race. Not blocking but should investigate whether there are two tracking init calls (inline + external tracking.js) running simultaneously.", "affected_selectors": []}
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "OPTIONAL: Investigate why one visitor_id appears twice in /api/admin/accesses (30-min dedup should prevent this).",
+    "OPTIONAL: Investigate console warning '[track] TypeError: Failed to fetch' — appears to come from inline tracking. Actual persistence works but the noise suggests a duplicate/early init call."
+  ],
+  "critical_code_review_comments": [
+    "inicio.html is ~800KB with all Tailwind CSS + daisyUI inlined. Consider offloading static CSS. Not related to bug.",
+    "tracking.js line 174 uses `res.ok || res.status < 500` to mark done — a 4xx will still mark done and NOT retry. This is intentional but could hide validation errors silently."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "admin: farpa / Ads102030 — /api/admin/auth/login (NOT /api/admin/login)",
+  "seed_data_creation": "Created 4 tracking records via home visits + 1 manual POST (visitor_ids: vms0nvpwv_0oxrms2z, vms0nw10a_q96cxhw4, vms0nw4ba_2m2ag10j, test_manual_xxx). All persisted in DB and returned by /api/admin/accesses.",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Bug from iteration_15 (CSP blocking /api/track/access) is RESOLVED. inicio.html no longer has restrictive CSP meta. tracking.js correctly gates sessionStorage.__track_access_done on successful POST response. Admin login endpoint is /api/admin/auth/login (not /api/admin/login). Use returned token as Bearer for /api/admin/accesses.",
+  "rca of the issue": "N/A - this iteration verified the fix from iteration_15. Root cause was CSP meta `default-src 'none'` in inicio.html which blocked all fetch requests to /api/track/access. Fix: removed/relaxed CSP + gate sessionStorage on POST success. All verified working end-to-end."
+}

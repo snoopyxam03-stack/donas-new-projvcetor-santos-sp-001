@@ -1,0 +1,30 @@
+{
+  "summary": "Retest of mobile header cleanup (iteration 34) on 2 viewports × 6 pages. Confirmed via computed styles + visual screenshot that 'Área do Candidato' button and top navigation menu (INÍCIO/CONTRATE-NOS/INTEGRIDADE) are now HIDDEN on mobile (#TopLogin and #TopMenu computed display:none). Body/html overflow-x:hidden works (bodyScrollW == viewportWidth, no horizontal overflow). VLibras hidden. HOWEVER, two visible bugs remain across ALL 6 pages: (a) #Topo has ~400px of empty blue space because a later CSS rule '#Topo{height:400px!important;width:780px!important;margin-bottom:20px!important}' overrides the injected mobile-fix media-query rule (equal CSS specificity + equal !important => later rule wins). (b) Logo is left-aligned (not centered) because '#Logo{float:left;width:200px;margin-right:20px}' plus '#Logo{margin-top:20px}' from base CSS are not overridden by the media query (same specificity issue). Note: my initial areaCandidatoVisibleCount assertion had a false-positive (it counted ancestor elements #Topo and .Conteudo whose textContent equals the child text after trim). Reality: Área do Candidato IS hidden (rectH=0, display:none via TopLogin).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Mobile header #Topo", "issue": "Header has ~400px height on mobile due to later unconditional CSS rule '#Topo{height:400px!important;width:780px!important}' overriding the injected @media(max-width:768px) mobile fix. Result: large empty blue area below logo on all 6 pages.", "selector": "#Topo", "priority": "HIGH"},
+      {"component": "Mobile header logo", "issue": "Logo is left-aligned instead of centered on mobile. '#Logo{float:left;width:200px;margin-right:20px}' and '#Logo{margin-top:20px}' base rules override media-query centering rules due to equal specificity/importance.", "selector": "#Topo #Logo", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Mobile header (all 6 public pages)", "issues": ["Large empty blue rectangle (~350px) between logo and page content", "Logo not horizontally centered - stuck to left edge"]}
+    ]
+  },
+  "test_report_links": ["/app/test_reports/screenshots/mobile_v3/"],
+  "action_items": [
+    "In the injected <style id='__mobile_header_fix'> block, increase CSS specificity so it wins over the base later rules. Options: (1) use body-scoped selectors: 'body #Topo{...}' and 'body #Topo #Logo{...}'; OR (2) move the injected <style> block to the END of <head> AND explicitly override height/width/float/margin-top/margin-right. Concretely add to the @media(max-width:768px) block: 'body #Topo{height:auto !important; min-height:0 !important; width:100% !important; max-width:100vw !important; margin-bottom:0 !important; padding:8px 0 !important} body #Topo #Logo{float:none !important; width:100% !important; max-width:100% !important; margin:0 !important; text-align:center !important} body #Topo #Logo h1{width:auto !important; margin:0 auto !important; text-align:center !important}'.",
+    "Apply the same fix to all 6 public HTMLs: inicio.html, inscricao.html, confirmacao.html, inscricao-realizada.html, pagamento-pix.html, termos.html."
+  ],
+  "critical_code_review_comments": [
+    "Injecting a <style> block to override existing CSS should always use higher-specificity selectors (e.g., prefixed with 'body' or 'html') when there are LATER unconditional !important rules in the same document. Media queries alone do NOT boost specificity.",
+    "Base HTML has redundant/conflicting #Topo rules ('#Topo{background:#fff;height:200px}' followed later by '#Topo{margin-bottom:20px!important;height:400px!important;width:780px!important}'). The 780px fixed width is inherently mobile-incompatible; consider removing height/width on #Topo and letting it flex to content."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "20% (2/10 assertions pass across pages: no overflow ✓, VLibras hidden ✓, TopoMobile hidden ✓, TopLogin/TopMenu display:none ✓; but logo not centered ✗, header height 400px ≫ 90px ✗)"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Screenshots saved at /app/test_reports/screenshots/mobile_v3/. Pixel5_*.png and iPhone13Pro_*.png each viewport×page. Also debug_inicio_mobile.png shows the actual mobile rendering clearly. Data JSON at /app/test_reports/screenshots/mobile_v3/results.json with per-page computed styles. Note that the areaCandidatoVisibleCount>0 in results.json is a false positive from the assertion counting ancestor DIVs whose textContent equals the child text — the button IS actually hidden via display:none on #TopLogin. Focus retest on (1) #Topo bounding rect height <= 90px, (2) logo centerX within ±10% of viewport center, on mobile viewport 393/390 wide.",
+  "rca of the issue": "CSS specificity/order problem. The injected mobile-fix media query rule and the later unconditional rule '#Topo{height:400px!important;width:780px!important;margin-bottom:20px!important}' both use the '#Topo' selector (specificity 0,1,0,0) with !important. Per CSS cascade, when specificity and importance tie, source order decides — and the LATER rule wins. Media queries don't affect specificity or ordering; they only gate whether a rule applies. Fix: prefix the injected mobile rules with 'body ' (or 'html body ') to raise specificity to 0,1,0,1, defeating the later 0,1,0,0 rule regardless of source order. Additionally, must explicitly set height:auto !important (or min-height:0) on #Topo in the mobile rule to negate the forced 400px height."
+}

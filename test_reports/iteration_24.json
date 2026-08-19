@@ -1,0 +1,33 @@
+{
+  "summary": "Tested visual bug fix on /inscricao.html and /farpapainel login. The rectangular box artefact around 'Município de Campo Alegre (AL)' is STILL PRESENT. The current CSS fix does not target the actual offending element. Login endpoint works correctly.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "inscricao.html #TopoInformacoes",
+        "issue": "Rectangular box artefact still visible around 'Município de Campo Alegre (AL)' text. The actual offending element is DIV.blocoPadrao rect=(510,350, 900x38) with borders=[1,1,1,1] and background=#fff. It overlaps the row (STRONG text is at y=362 h=18) creating the empty-input-field appearance. The current CSS override targets only #TopoInformacoes, its h2/p/strong/imagem descendants, but NOT .blocoPadrao. The .blocoPadrao div is rendered as a sibling/wrapper inside the topo area and its 1px border on all sides is what draws the visible rectangle.",
+        "selector": "#TopoInformacoes .blocoPadrao (or any .blocoPadrao inside the concurso info area)",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [".screenshots/inscricao_top.jpg", ".screenshots/municipio_focused.jpg"],
+  "action_items": [
+    "Extend the CSS fix at the end of the <style> block in /app/frontend/public/inscricao.html to also neutralise .blocoPadrao inside the concurso info area. Suggested addition:\n#TopoInformacoes .blocoPadrao, #pgInformacoes .blocoPadrao { border:0 !important; outline:0 !important; box-shadow:none !important; background:transparent !important; }\nAlternatively, if .blocoPadrao is an empty spacer element not needed here, hide it: #TopoInformacoes .blocoPadrao { display:none !important; }.",
+    "After patching, re-test /inscricao.html: the row containing 'Município de Campo Alegre (AL)' must render as plain bold text with no rectangle around it. Verify the CAMPO ALEGRE thumbnail on the left is still visible."
+  ],
+  "critical_code_review_comments": [
+    "The static single-file HTML (~2.5MB) makes CSS overrides tricky; consider extracting the fix into a small external CSS override loaded after the inline style to keep the patch discoverable and reduce risk of regressions.",
+    "Multiple #TopoInformacoes selectors in the file — the fix should include .blocoPadrao/.dados/.info variants which are the true visual box carriers."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "50%"},
+  "test_credentials": "farpa / Ads102030 (verified: POST /api/admin/auth/login -> 200 with token+user keys)",
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "The visual bug is caused by DIV.blocoPadrao at rect (510,350,900x38) with 1px border on all 4 sides — this is what looks like an empty input around 'Município de Campo Alegre (AL)'. Current fix in inscricao.html near the very end of the style block covers #TopoInformacoes and its h2/strong/imagem children but NOT .blocoPadrao. Login endpoint /api/admin/auth/login works (200, returns {token, user}). Thumbnail image (div.imagem with .logomarca-cliente img) is visible at 98x98. Screenshots stored at .screenshots/inscricao_top.jpg and .screenshots/municipio_focused.jpg.",
+  "rca of the issue": "Root cause: The 'empty input' box the user reported comes from an element with class .blocoPadrao (a full-width 900x38 div with 1px border and white background) positioned exactly across the Municipio row. The applied CSS fix only zeroes borders/outline/box-shadow/background on #TopoInformacoes and h2/p/strong/imagem descendants; because .blocoPadrao is a separate div (not matched by those selectors), its border is preserved. Reproduction: open https://alegra-sandbox.preview.emergentagent.com/inscricao.html in a 1920x800 viewport and observe the horizontal rectangle spanning across 'Município de Campo Alegre (AL)'. Mitigation: extend selector list to include .blocoPadrao (see action_items)."
+}

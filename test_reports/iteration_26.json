@@ -1,0 +1,35 @@
+{
+  "summary": "Tested CEP proxy endpoint (backend) and CEP autofill flow on /inscricao.html (frontend). Backend endpoint /api/cep/{cep} works for 66060300 (returns Passagem Lizete/Fátima/Belém/PA) and returns erro for invalid CEPs. Found bug: for 57250000 backend returned {erro:true} because ViaCEP returns HTTP 200 with erro=true payload and backend was not falling back to BrasilAPI in that case. Fixed the fallback logic (added !data.get('erro') check before returning ViaCEP JSON) and confirmed it now returns localidade='Campo Alegre', uf='AL' via BrasilAPI. Frontend test FAILED: browser console shows 'Refused to connect ... violates the document's Content Security Policy (default-src none, connect-src not set)'. The fetch('/api/cep/66060300') from inscricao.html is being blocked by CSP; UI still shows 'Erro ao buscar CEP'. No CSP header is present in curl responses and no CSP meta tag was found in the static HTML file (only base64-encoded assets contain the substring), so the CSP appears to be enforced by the preview-iframe/runtime environment. Main agent needs to add an explicit CSP meta tag (or move the fetch through a same-origin allowed connect-src) so the browser permits the /api/cep call.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "GET /api/cep/{cep}", "issue": "ViaCEP fallback bug: backend returned {erro:true} for valid CEP 57250000 because ViaCEP returned HTTP 200 with erro='true'. FIXED by checking data.erro before returning; BrasilAPI fallback now triggers and returns Campo Alegre/AL."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "inscricao.html CEP field", "issue": "After typing 66060-300 and blur, span[data-testid=cep-status] shows 'Erro ao buscar CEP' (red). LOGRADOURO/BAIRRO/CIDADE/UF remain empty. Root cause: fetch to /api/cep/66060300 is blocked by CSP (console: 'default-src none ... Fetch API cannot load ... Refused to connect'). Backend proxy itself works via curl.", "selector": "[data-testid=cep-status]", "priority": "HIGH"}
+    ],
+    "integration_issues": [
+      {"flow": "CEP autocomplete on /inscricao.html", "issue": "Same-origin fetch to /api/cep/{clean} is blocked by CSP directive default-src 'none' with no connect-src override. No CEP-related network request is dispatched (Playwright request listener recorded 0 requests). Adding a <meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self' data: blob: https:; connect-src 'self' https:; ...\"> or equivalent should unblock it.", "affected_selectors": ["[data-testid=input-cep]", "[data-testid=cep-status]", "[name=LOGRADOURO]", "[name=BAIRRO]", "[name=CIDADE]", "[name=UF]"]}
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Add an explicit CSP meta tag to /app/frontend/public/inscricao.html that permits same-origin connect-src (e.g., connect-src 'self' https:) OR remove/relax the restrictive default-src 'none' that is being applied in the preview environment. Without this the /api/cep/* fetch is blocked before it leaves the browser.",
+    "(Optional) Verify no other pages need the same CSP relaxation.",
+    "Retest CEP autofill for 66060-300 (should populate Passagem Lizete / Fátima / Belém / PA) and 57250000 (Campo Alegre / AL)."
+  ],
+  "critical_code_review_comments": [
+    "Backend /api/cep fallback logic was incomplete: ViaCEP frequently returns HTTP 200 with body {erro:'true'} for unknown CEPs; original code returned that directly instead of falling back to BrasilAPI. Fixed.",
+    "inscricao.html is a very large static file with embedded base64 fonts/images — consider extracting assets for maintainability, but not blocking."
+  ],
+  "updated_files": ["/app/backend/server.py"],
+  "success_rate": {"backend": "100%", "frontend": "0%"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Backend /api/cep/{cep} verified via curl: 66060300 -> Passagem Lizete/Fátima/Belém/PA; 57250000 -> Campo Alegre/AL (after fallback fix); 00000000 & 123 -> {erro:true}. Frontend UI blocked by CSP default-src 'none'; must be resolved before frontend flow can be re-tested. Cache-busting query string was used and no CSP header was seen in curl -I, so CSP likely originates from preview iframe wrapper — an inline meta CSP in inscricao.html allowing connect-src 'self' should override it.",
+  "rca of the issue": "Two independent issues found. (1) Backend: ViaCEP returns HTTP 200 with erro='true' for missing CEPs; original endpoint returned that unchanged, so BrasilAPI fallback never ran — fixed by inspecting response body. (2) Frontend: the browser blocks the same-origin fetch to /api/cep/... due to a Content-Security-Policy 'default-src none' with no connect-src, applied by the preview environment. Since inscricao.html has no CSP meta of its own, adding one that whitelists connect-src 'self' https: will restore the ability to call the backend proxy."
+}

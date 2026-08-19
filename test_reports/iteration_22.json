@@ -1,0 +1,29 @@
+{
+  "summary": "Auditoria de código para verificar que o repositório está limpo de URL de preview antes de o usuário fazer 'Save to GitHub' + deploy VPS. Todas as 7 verificações passaram. Também executei regressão funcional (3 curls) contra o backend em produção — todas OK.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "audit_results": {
+    "1_preview_url_scan": "PASS — grep recursivo em /app (excluindo node_modules, .git, .emergent, build) por 'preview.emergentagent.com' retorna apenas /app/frontend/.env (que está em .gitignore linha 26). Nenhum outro arquivo runtime contém a string.",
+    "2_html_public_pages": "PASS — inicio.html, inscricao.html, confirmacao.html usam window.location.origin (1 ocorrência cada). pagamento-pix.html usa 4 vezes. inscricao-realizada.html não faz nenhuma chamada /api (é apenas página estática de confirmação — sem necessidade). URLs externos são apenas viacep.com.br e fevre.com.br (parceiros legítimos).",
+    "3_admin_bundle": "PASS — /app/frontend/public/donaspainel/static/js/main.fda9cfa5.js e index.html não contêm preview.emergentagent.com. URLs no bundle são apenas react.dev, reactrouter.com, redux-toolkit.js.org, api.telegram.org, http://localhost (React dev docs) — nada crítico.",
+    "4_backend_hardcoded": "PASS — /app/backend/server.py e /app/backend/admin_routes.py só contêm URLs de serviços externos: http://ip-api.com (geo lookup, admin_routes.py:109) e https://api.telegram.org (notifications, admin_routes.py:1332,1437). Nenhuma URL de self/preview hardcoded — CORS e domain via env.",
+    "5_gitignore": "PASS — /app/frontend/.gitignore inclui '.env' na linha 26 (além de .env.local, .env.development.local, .env.test.local, .env.production.local). /app/backend/.gitignore inclui '.env' na linha 3.",
+    "6_env_examples": "PASS — /app/frontend/.env.example tem REACT_APP_BACKEND_URL=https://seudominio.com.br + WDS_SOCKET_PORT + ENABLE_HEALTH_CHECK. /app/backend/.env.example tem MONGO_URL, DB_NAME, CORS_ORIGINS, ADMIN_USERNAME=farpa, ADMIN_PASSWORD placeholder, JWT_SECRET placeholder. Ambos com placeholders, sem credenciais reais.",
+    "7_tests_baseurl": "PASS — 13 de 14 arquivos .py em /app/tests usam BASE_URL/BASE via os.environ.get. Zero arquivos contêm 'preview.emergentagent'.",
+    "8_functional_regression": "PASS — GET / → 200 (home Volta Redonda carrega). POST /api/admin/auth/login (farpa/Ads102030) → JWT válido retornado. POST /api/track/access → {\"ok\":true,\"skipped\":\"duplicate\"}. POST /api/pix/generate → pix_code + qr_png_base64 (base64 PNG válido). Backend 100% funcional após a limpeza."
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Repositório está pronto para push ao GitHub e deploy em VPS. Nenhuma URL preview vaza fora de /app/frontend/.env (gitignored).",
+    "Sugestão minor: /app/frontend/public/inscricao-realizada.html não tem window.location.origin (esperado, não faz API calls) — se no futuro adicionar tracking, lembre de usar path relativo /api/... também."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "N/A (audit only)"},
+  "test_credentials": "farpa / Ads102030 (admin) — funcional",
+  "seed_data_creation": "nenhum",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Auditoria pré-GitHub-push concluída. Repositório limpo. Se o usuário reportar problemas pós-deploy em VPS, o mais provável é (a) esquecer de copiar .env.example para .env com valores reais na VPS, ou (b) CORS_ORIGINS não configurado corretamente para o novo domínio. Todos os HTMLs usam caminhos relativos via window.location.origin, então basta que backend e frontend estejam no mesmo domínio (ou proxied via nginx).",
+  "rca of the issue": "N/A — auditoria de conformidade, nenhum bug encontrado."
+}

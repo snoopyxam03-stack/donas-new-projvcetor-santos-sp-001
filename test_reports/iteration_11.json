@@ -1,0 +1,21 @@
+{
+  "summary": "Retest of red error box visibility on /inscricao/contato when Celular is empty. Both scenarios PASS. The .erro-campos-donas wrapper is now rendered on-screen with visibility=visible, position=static (fallback fixed not needed), rect left=405, top=662, width=1140, height=40, inViewport=true. Text 'Preencha o campo obrigatório: Celular' is displayed in red box near Próximo button. URL correctly remained /inscricao/contato. Scenario 2 (all valid) successfully navigated to /inscricao/endereco. Fix (isVisibleAncestor + position:fixed fallback) is working — the isVisibleAncestor selection alone was enough (fallback timeout did not trigger since box was already visible).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "mostrarErroCampos ~120 lines is complex; consider extracting isVisibleAncestor and fallback repositioning into small helpers for readability",
+    "Auto-hide timer (8s) recreates 'box' variable reference; harmless but slightly confusing (box = wrapper reassigned)"
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Bug fixed. Error box appears visually on Contato step. Scenario 1 (Celular vazio) shows red box with 'Celular'. Scenario 2 (valid) navigates to /inscricao/endereco. Screenshot confirms visual presence."
+}

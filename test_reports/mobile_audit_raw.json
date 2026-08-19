@@ -1,0 +1,950 @@
+{
+  "iPhone_SE__inicio": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inicio.html?_=1785367366304",
+    "audit": {
+      "viewport": 375,
+      "body_scrollWidth": 375,
+      "doc_scrollWidth": 375,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_SE__inicio.png"
+  },
+  "iPhone_SE__inscricao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao.html?_=1785367368305",
+    "audit": {
+      "viewport": 375,
+      "body_scrollWidth": 375,
+      "doc_scrollWidth": 375,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_SE__inscricao.png"
+  },
+  "iPhone_SE__confirmacao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/confirmacao.html?_=1785367369987",
+    "audit": {
+      "viewport": 375,
+      "body_scrollWidth": 375,
+      "doc_scrollWidth": 375,
+      "issues": [],
+      "overflows": [
+        {
+          "tag": "TABLE",
+          "testid": "tabela-confirmacao",
+          "text": "Inscri\u00e7\u00e3o:\t2026000000\tVaga Escolhida:\t\u2014\n",
+          "right": 424,
+          "width": 336
+        },
+        {
+          "tag": "TD",
+          "testid": "c-vaga",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-sexo",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-data",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-arquivos",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-logradouro",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-complemento",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-cidade",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-celular",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-email",
+          "text": "\u2014",
+          "right": 424,
+          "width": 238
+        }
+      ],
+      "smallTargets": [
+        {
+          "testid": "btn-alterar-dados",
+          "tag": "button",
+          "w": 138,
+          "h": 38
+        },
+        {
+          "testid": "btn-confirmar-inscricao",
+          "tag": "button",
+          "w": 178,
+          "h": 38
+        }
+      ],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_SE__confirmacao.png"
+  },
+  "iPhone_SE__inscricao-realizada": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao-realizada?_=1785367371644",
+    "audit": {
+      "viewport": 375,
+      "body_scrollWidth": 375,
+      "doc_scrollWidth": 375,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_SE__inscricao-realizada.png"
+  },
+  "iPhone_SE__pagamento-pix": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/pagamento-pix?_=1785367373088",
+    "audit": {
+      "viewport": 375,
+      "body_scrollWidth": 375,
+      "doc_scrollWidth": 375,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_SE__pagamento-pix.png"
+  },
+  "iPhone_SE__termos": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/termos.html?_=1785367374541",
+    "audit": {
+      "viewport": 375,
+      "body_scrollWidth": 375,
+      "doc_scrollWidth": 375,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_SE__termos.png"
+  },
+  "iPhone_13_Pro__inicio": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inicio.html?_=1785367376115",
+    "audit": {
+      "viewport": 390,
+      "body_scrollWidth": 390,
+      "doc_scrollWidth": 390,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_13_Pro__inicio.png"
+  },
+  "iPhone_13_Pro__inscricao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao.html?_=1785367378334",
+    "audit": {
+      "viewport": 390,
+      "body_scrollWidth": 390,
+      "doc_scrollWidth": 390,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_13_Pro__inscricao.png"
+  },
+  "iPhone_13_Pro__confirmacao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/confirmacao.html?_=1785367380206",
+    "audit": {
+      "viewport": 390,
+      "body_scrollWidth": 390,
+      "doc_scrollWidth": 390,
+      "issues": [],
+      "overflows": [
+        {
+          "tag": "TABLE",
+          "testid": "tabela-confirmacao",
+          "text": "Inscri\u00e7\u00e3o:\t2026000000\tVaga Escolhida:\t\u2014\n",
+          "right": 424,
+          "width": 336
+        },
+        {
+          "tag": "TD",
+          "testid": "c-vaga",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-sexo",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-data",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-arquivos",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-logradouro",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-complemento",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-cidade",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-celular",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-email",
+          "text": "\u2014",
+          "right": 424,
+          "width": 238
+        }
+      ],
+      "smallTargets": [
+        {
+          "testid": "btn-alterar-dados",
+          "tag": "button",
+          "w": 138,
+          "h": 38
+        },
+        {
+          "testid": "btn-confirmar-inscricao",
+          "tag": "button",
+          "w": 178,
+          "h": 38
+        }
+      ],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_13_Pro__confirmacao.png"
+  },
+  "iPhone_13_Pro__inscricao-realizada": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao-realizada?_=1785367381857",
+    "audit": {
+      "viewport": 390,
+      "body_scrollWidth": 390,
+      "doc_scrollWidth": 390,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_13_Pro__inscricao-realizada.png"
+  },
+  "iPhone_13_Pro__pagamento-pix": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/pagamento-pix?_=1785367383471",
+    "audit": {
+      "viewport": 390,
+      "body_scrollWidth": 390,
+      "doc_scrollWidth": 390,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_13_Pro__pagamento-pix.png"
+  },
+  "iPhone_13_Pro__termos": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/termos.html?_=1785367384912",
+    "audit": {
+      "viewport": 390,
+      "body_scrollWidth": 390,
+      "doc_scrollWidth": 390,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/iPhone_13_Pro__termos.png"
+  },
+  "Pixel_5__inicio": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inicio.html?_=1785367386528",
+    "audit": {
+      "viewport": 393,
+      "body_scrollWidth": 393,
+      "doc_scrollWidth": 393,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Pixel_5__inicio.png"
+  },
+  "Pixel_5__inscricao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao.html?_=1785367388601",
+    "audit": {
+      "viewport": 393,
+      "body_scrollWidth": 393,
+      "doc_scrollWidth": 393,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Pixel_5__inscricao.png"
+  },
+  "Pixel_5__confirmacao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/confirmacao.html?_=1785367390326",
+    "audit": {
+      "viewport": 393,
+      "body_scrollWidth": 393,
+      "doc_scrollWidth": 393,
+      "issues": [],
+      "overflows": [
+        {
+          "tag": "TABLE",
+          "testid": "tabela-confirmacao",
+          "text": "Inscri\u00e7\u00e3o:\t2026000000\tVaga Escolhida:\t\u2014\n",
+          "right": 424,
+          "width": 336
+        },
+        {
+          "tag": "TD",
+          "testid": "c-vaga",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-sexo",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-data",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-arquivos",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-logradouro",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-complemento",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-cidade",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-celular",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-email",
+          "text": "\u2014",
+          "right": 424,
+          "width": 238
+        }
+      ],
+      "smallTargets": [
+        {
+          "testid": "btn-alterar-dados",
+          "tag": "button",
+          "w": 138,
+          "h": 38
+        },
+        {
+          "testid": "btn-confirmar-inscricao",
+          "tag": "button",
+          "w": 178,
+          "h": 38
+        }
+      ],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Pixel_5__confirmacao.png"
+  },
+  "Pixel_5__inscricao-realizada": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao-realizada?_=1785367391985",
+    "audit": {
+      "viewport": 393,
+      "body_scrollWidth": 393,
+      "doc_scrollWidth": 393,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Pixel_5__inscricao-realizada.png"
+  },
+  "Pixel_5__pagamento-pix": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/pagamento-pix?_=1785367393438",
+    "audit": {
+      "viewport": 393,
+      "body_scrollWidth": 393,
+      "doc_scrollWidth": 393,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Pixel_5__pagamento-pix.png"
+  },
+  "Pixel_5__termos": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/termos.html?_=1785367394867",
+    "audit": {
+      "viewport": 393,
+      "body_scrollWidth": 393,
+      "doc_scrollWidth": 393,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Pixel_5__termos.png"
+  },
+  "Galaxy_S8plus__inicio": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inicio.html?_=1785367396500",
+    "audit": {
+      "viewport": 360,
+      "body_scrollWidth": 360,
+      "doc_scrollWidth": 360,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Galaxy_S8plus__inicio.png"
+  },
+  "Galaxy_S8plus__inscricao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao.html?_=1785367398632",
+    "audit": {
+      "viewport": 360,
+      "body_scrollWidth": 360,
+      "doc_scrollWidth": 360,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Galaxy_S8plus__inscricao.png"
+  },
+  "Galaxy_S8plus__confirmacao": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/confirmacao.html?_=1785367400529",
+    "audit": {
+      "viewport": 360,
+      "body_scrollWidth": 360,
+      "doc_scrollWidth": 360,
+      "issues": [],
+      "overflows": [
+        {
+          "tag": "TABLE",
+          "testid": "tabela-confirmacao",
+          "text": "Inscri\u00e7\u00e3o:\t2026000000\tVaga Escolhida:\t\u2014\n",
+          "right": 424,
+          "width": 336
+        },
+        {
+          "tag": "TD",
+          "testid": "c-vaga",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-sexo",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-data",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-arquivos",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-logradouro",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-complemento",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-cidade",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-celular",
+          "text": "\u2014",
+          "right": 424,
+          "width": 30
+        },
+        {
+          "tag": "TD",
+          "testid": "c-email",
+          "text": "\u2014",
+          "right": 424,
+          "width": 238
+        }
+      ],
+      "smallTargets": [
+        {
+          "testid": "btn-alterar-dados",
+          "tag": "button",
+          "w": 138,
+          "h": 38
+        },
+        {
+          "testid": "btn-confirmar-inscricao",
+          "tag": "button",
+          "w": 178,
+          "h": 38
+        }
+      ],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Galaxy_S8plus__confirmacao.png"
+  },
+  "Galaxy_S8plus__inscricao-realizada": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/inscricao-realizada?_=1785367402330",
+    "audit": {
+      "viewport": 360,
+      "body_scrollWidth": 360,
+      "doc_scrollWidth": 360,
+      "issues": [],
+      "overflows": [
+        {
+          "tag": "TD",
+          "testid": "r-inscricao",
+          "text": "2026000000",
+          "right": 371,
+          "width": 113
+        },
+        {
+          "tag": "TD",
+          "testid": "r-nome",
+          "text": "\u2014",
+          "right": 371,
+          "width": 113
+        },
+        {
+          "tag": "TD",
+          "testid": "r-cpf",
+          "text": "\u2014",
+          "right": 371,
+          "width": 113
+        },
+        {
+          "tag": "TD",
+          "testid": "r-vaga",
+          "text": "\u2014",
+          "right": 371,
+          "width": 113
+        },
+        {
+          "tag": "TD",
+          "testid": "r-status",
+          "text": "PENDENTE DE PAGAMENTO",
+          "right": 371,
+          "width": 113
+        }
+      ],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Galaxy_S8plus__inscricao-realizada.png"
+  },
+  "Galaxy_S8plus__pagamento-pix": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/pagamento-pix?_=1785367403820",
+    "audit": {
+      "viewport": 360,
+      "body_scrollWidth": 360,
+      "doc_scrollWidth": 360,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Galaxy_S8plus__pagamento-pix.png"
+  },
+  "Galaxy_S8plus__termos": {
+    "url": "https://alegra-sandbox.preview.emergentagent.com/termos.html?_=1785367405286",
+    "audit": {
+      "viewport": 360,
+      "body_scrollWidth": 360,
+      "doc_scrollWidth": 360,
+      "issues": [],
+      "overflows": [],
+      "smallTargets": [],
+      "logoInfo": {
+        "w": 0,
+        "h": 0,
+        "right": 0
+      },
+      "loaderVisible": false,
+      "areaCandInfo": {
+        "visible": false,
+        "w": 0,
+        "h": 0,
+        "right": 0
+      }
+    },
+    "screenshot": "/app/test_reports/screenshots/mobile/Galaxy_S8plus__termos.png"
+  }
+}

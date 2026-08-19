@@ -1,0 +1,42 @@
+{
+  "summary": "Frontend-only MOBILE responsiveness testing on 7 public pages (iPhone 390x844 & Android Pixel 412x915 via CDP Emulation.setDeviceMetricsOverride mobile=true). Validated: (a) meta[name=viewport] presence, (b) horizontal overflow (docScrollWidth vs innerWidth), (c) touch-target minimum 44px, (d) desktop navbar hidden, (e) input font-size >=16px, (f) visual screenshot. 6/7 pages PASS mobile responsiveness. 1/7 (/) FAILS — the home page ignores mobile viewport and renders full desktop layout (~1524px wide) on iPhone/Android.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "inicio.html (route /)",
+        "issue": "Home page NOT responsive on mobile. Under CDP iPhone 390 emulation, window.innerWidth = 1524 (should be 390); the entire page (7-item desktop navbar INICIO/O INSTITUTO/CONCURSOS/SOCIAL/NOTICIAS/PECA SEU CERTIFICADO/CONTATO, header, hero, cargo list) renders at desktop width. On a real iPhone this means the whole desktop layout is scaled down (tiny text ~10px effective). Confirmed via screenshot. Root cause: (1) DUPLICATE <meta name=viewport> tags on line 132 — the second one (`width=device-width, initial-scale=1` without maximum-scale) is ignored by browsers, but the first has `maximum-scale=5.0` which combined with content wider than device triggers browser auto-scale expansion. (2) The Tailwind/daisyUI layout uses `md:navbar` `max-w-7xl` `w-full` classes; header measures 1524px wide even though html computed width is 390px. (3) The @media (max-width:768px) rules inside <style id=donas-mobile-fix> and donas-mobile-fix-2 never fire because the layout viewport is 1524, not 390.",
+        "selector": "html, meta[name=viewport], header, .rd-navbar-nav-wrap",
+        "priority": "HIGH"
+      },
+      {
+        "component": "/inscricao* Angular form (fd-formulario shadowRoot)",
+        "issue": "Shadow DOM contains 222 elements whose bounding-rect right-edge exceeds 390px (stepper step headers at right=492/648, secondary buttons at x=480/578/637). documentElement.scrollWidth remains 390 so no horizontal scroll leaks to user, but inner form controls are clipped/overlapped in the visual rendering. Primary Proximo button (x=236, w=130, h=46) is visible & clickable. Not blocking submission but polish opportunity: the Angular Material stepper header and internal btn-group have no mobile styles applied inside the shadow root (the donas-mobile-fix @media rules do not pierce shadow DOM).",
+        "selector": "fd-formulario >>> mat-horizontal-stepper, .step-header, button",
+        "priority": "MEDIUM"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "/", "issues": ["Duplicate <meta name=viewport> tag (line 132 has two viewport metas concatenated). Only the first is honored; remove the second."]},
+      {"screen": "all /inscricao/* pages", "issues": ["Policy link 'Politica de Privacidade' footer link is 22px tall (touch target < 44px). Minor — text link, acceptable."]},
+      {"screen": "/inscricao/pagamento", "issues": ["'Desmarcar ⌃' toggle action is 80x16px — below 44px touch target. Minor."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "FIX HOME PAGE MOBILE: The /inicio.html page must be made responsive. Options: (a) remove `maximum-scale=5.0` from meta viewport OR add `width=device-width, initial-scale=1, shrink-to-fit=no`, (b) remove the DUPLICATE viewport meta tag on line 132, (c) audit the Tailwind/daisyUI header/nav — mobile hamburger not visible, all 7 desktop nav links are shown; add `hidden md:flex` on desktop nav and `md:hidden` hamburger for mobile, (d) find the element forcing width to expand beyond 390 (likely a fixed-width child inside <header>) and constrain it.",
+    "OPTIONAL: extend donas-mobile-fix @media rules to pierce the Angular fd-formulario shadow DOM (via ::part() or by injecting the styles into shadowRoot at runtime) to properly restyle the stepper + button-group at <=768px."
+  ],
+  "critical_code_review_comments": [
+    "inicio.html line 132 has TWO <meta name=viewport> tags concatenated on the same line — one is redundant, and the two contents disagree (first: maximum-scale=5.0; second: only initial-scale=1). Delete the second.",
+    "The donas-mobile-fix / donas-mobile-fix-2 @media (max-width:768px) global CSS blocks do NOT reach content inside <fd-formulario> shadowRoot — CSS from light DOM doesn't inherit through shadow boundary. Any real mobile styling for the form controls must live inside the shadow (component styles or ::part())."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "6/7 pages pass (86%)"},
+  "seed_data_creation": "",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Mobile testing was done via CDP Emulation.setDeviceMetricsOverride with mobile=true (page.set_viewport_size alone does NOT work in this env). iPhone metrics {width:390,height:844,dSF:2}; Android {width:412,height:915,dSF:2.625}. UA overridden. Wait 4-5s after goto for Angular. All /inscricao/* pages have correct viewport (innerWidth=390) but their internal Angular fd-formulario shadow DOM has some overflow. /inscricao/pagamento is a fully custom static HTML with proper @media (max-width:640px) — verified excellent mobile layout (SAIR top, Imprimir 100% width w=358, Gerar Guia visible, SAIR bottom centered). HOME PAGE / is the only genuinely broken mobile page: layout viewport reports 1524 despite CDP 390 override. Retest after main agent fixes the duplicate viewport meta and adds proper mobile navbar hiding.",
+  "rca of the issue": "Home page innerWidth=1524 in mobile emulation caused by (1) duplicate meta viewport tag with `maximum-scale=5.0` + (2) desktop-first Tailwind/daisyUI markup with header content that forces >390px width, causing browser to expand layout viewport to fit content (since maximum-scale allows it). Fix: remove duplicate meta, tighten viewport to `width=device-width, initial-scale=1` only, and add mobile-visible hamburger while hiding the 7-item desktop nav below 768px."
+}

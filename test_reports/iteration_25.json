@@ -1,0 +1,22 @@
+{
+  "summary": "Frontend-only visual regression retest for /inscricao.html. Verified the previous rectangular-box artefact around the 'Município de Campo Alegre (AL)' row is fully gone after the CSS fix extending to .blocoPadrao selectors. Screenshot + DOM computed-style probing at multiple points inside the concurso info card confirm no visible border/outline/box-shadow/background on .blocoPadrao / #TopoInformacoes descendants. CAMPO ALEGRE thumbnail on the left remains visible.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [".screenshots/inscricao_after_fix.jpg"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "The single .blocoPadrao element (rect 900x36 at y=350) now renders with border-*-width=0px, outline=0px none, box-shadow=none, background=rgba(0,0,0,0) - fix is effective.",
+    "The only remaining box-shadow observed in the area belongs to div.Miolo (outer card wrapper), which is intentional and expected."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Bug fix verified via: (1) cache-busted hard reload of /inscricao.html at 1920x800, (2) full screenshot showing clean layout, (3) elementsFromPoint at (700,302),(900,302),(1100,302),(800,320),(1000,340) - no descendant of .blocoPadrao/#TopoInformacoes shows any visible border/outline/shadow, (4) full sweep of all div.blocoPadrao returned 1 element with all border widths 0px, outline 0 none, shadow none, background transparent. Thumbnail CAMPO ALEGRE visible.",
+  "rca of the issue": "Previous iterations targeted #TopoInformacoes descendants only; the offending rectangle came from DIV.blocoPadrao which had a background/border. Fix in /app/frontend/public/inscricao.html <style> block now zeros border/outline/box-shadow/background on .blocoPadrao, #TopoInformacoes .blocoPadrao, and #pgInformacoes .blocoPadrao. Verified via computed styles - artefact eliminated."
+}

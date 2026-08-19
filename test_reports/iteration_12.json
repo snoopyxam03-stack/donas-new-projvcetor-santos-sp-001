@@ -1,0 +1,21 @@
+{
+  "summary": "Frontend-only test of /inscricao/endereco red error-box fix (same pattern applied from iteration_11 /inscricao/contato). Both scenarios PASS. Scenario 1 (all fields empty → Próximo): .erro-campos-donas rendered inside shadowRoot, visibility=visible, display=flex, position=static (fallback fixed NOT needed), rect{left:405, top:528, width:1140, height:173}, inViewport=true, text lists all 6 missing fields (CEP, Logradouro, Número, Bairro, Estado, Cidade), URL remained /inscricao/endereco. Scenario 2 (CEP=59000-000 + Número=100): ViaCEP could not find CEP (shows 'CEP não encontrado — preencha manualmente' inline hint — expected), click Próximo shows error box listing remaining missing fields (Logradouro, Bairro, Estado, Cidade). URL still /inscricao/endereco. Screenshots confirm visual presence of red box near/below Próximo button in both cases. Fix works identically to Contato step.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "mostrarErroCampos is duplicated across inscricao-*.html files — consider extracting into a shared JS module (/app/frontend/public/js/inscricao-common.js) to reduce maintenance overhead across 5+ pages",
+    "Scenario 2 could not navigate to /inscricao/informacoes because CEP 59000-000 is not resolvable by ViaCEP in this environment; not a bug in fix — the validation correctly listed only truly-missing fields"
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Fix validated on /inscricao/endereco. Same fix pattern (isVisibleAncestor + position:fixed fallback + document capture listener with composedPath) is now applied on Contato (iter11) and Endereco (iter12). If applying same fix to /inscricao/informacoes and /inscricao/pagamento, use identical selectors/handler code."
+}

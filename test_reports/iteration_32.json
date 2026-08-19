@@ -1,0 +1,75 @@
+{
+  "summary": "Full mobile-responsive audit of 6 public pages (inicio, inscricao, confirmacao, inscricao-realizada, pagamento-pix, termos) on 4 mobile viewports (iPhone SE 375, iPhone 13 Pro 390, Pixel 5 393, Galaxy S8+ 360) executed via Playwright device emulation (isMobile=true, hasTouch=true, mobile UAs). 24/24 pages loaded successfully, 24 full-page screenshots captured under /app/test_reports/screenshots/mobile/. No global horizontal page overflow detected on any page (document.body.scrollWidth == viewport width everywhere). However TWO structural mobile bugs were found: (1) confirmacao.html 2-column data table does NOT stack on mobile — the right column is pushed outside the visible container on ALL 4 mobile viewports (values like Nome/CEP/Vaga/etc. rendered off-screen and clipped by overflow-x:hidden of the parent, so user only sees the left column of empty '—' values). (2) inscricao-realizada.html value column on 360px (Galaxy S8+) clips the Inscrição number '2026000000' (only '2026' visible) and clips the Status pill 'PENDENTE DE PAGAMENTO' (renders as 'PEN DE PAG'). Also detected: confirmacao action-bar buttons are 38px tall (WCAG/HIG recommend >=44px, target >=40px). VLibras accessibility widget overlaps critical values on narrow viewports. Pagamento-PIX kept showing the loading spinner ('Gerando seu código PIX...') during the 1.2s post-load wait, so QR/textarea rendering could not be audited — recommend main agent verify or increase wait for that page in future iterations.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "confirmacao.html — tabela-confirmacao (2-column data grid)",
+        "issue": "On mobile (all 4 tested viewports: 375, 390, 393, 360) the 2-column layout does NOT stack. The table's intrinsic width is 336px but its right edge lands at 424px (i.e. right column starts at ~230px and extends to 424px, off the 360-393px screen). Because a parent has overflow-x hidden, the right column is invisibly clipped — user sees only left labels + '—' placeholders and never sees Nome/CEP/Endereço/UF/Email values. Screenshot confirms partial letters ('N…', 'L…', 'Con…') bleeding on right edge. Needs a @media (max-width:640px) rule to convert the two-column layout to a single stacked column (or table-layout that reflows).",
+        "selector": "[data-testid='tabela-confirmacao'] and its children c-vaga, c-sexo, c-data, c-arquivos, c-logradouro, c-complemento, c-cidade, c-celular, c-email",
+        "priority": "P0/HIGH"
+      },
+      {
+        "component": "inscricao-realizada.html — right value column (data-testid r-*)",
+        "issue": "On 360px viewport (Galaxy S8+) the values column clips: r-inscricao shows only '2026' (rest of '2026000000' cut off), r-status pill 'PENDENTE DE PAGAMENTO' renders as truncated 'PEN DE PAG'. Right edge lands at 371px vs 360px viewport (~11px overflow) but overflow-hidden on parent clips it. Screenshot: /app/test_reports/screenshots/mobile/Galaxy_S8plus__inscricao-realizada.png. On 375+ viewports the bug is not visually reproduced but layout is tight. Recommend either reducing left-label column width, letting the value cell wrap (word-break:break-word / white-space:normal), or stacking on <=380px.",
+        "selector": "[data-testid='r-inscricao'], [data-testid='r-nome'], [data-testid='r-cpf'], [data-testid='r-vaga'], [data-testid='r-status']",
+        "priority": "P1/HIGH"
+      },
+      {
+        "component": "confirmacao.html — action bar buttons",
+        "issue": "btn-alterar-dados (138x38) and btn-confirmar-inscricao (178x38) are only 38px tall on all mobile viewports. WCAG 2.5.5 / Apple HIG / Material recommend >=44px (audit threshold was 40px). Width is fine.",
+        "selector": "[data-testid='btn-alterar-dados'], [data-testid='btn-confirmar-inscricao']",
+        "priority": "P2/MEDIUM"
+      },
+      {
+        "component": "VLibras accessibility widget (floating blue hand, bottom-right of every page)",
+        "issue": "Overlaps important content on narrow viewports (375px and below). Visible in screenshots of confirmacao.html (overlaps 'Confira seus dados' paragraph) and inscricao.html (overlaps CPF input). Consider bottom offset increase on mobile or auto-hide.",
+        "selector": ".vw-container, .vpw-container, [class*='vlibras']",
+        "priority": "P2/LOW"
+      },
+      {
+        "component": "pagamento-pix.html — PIX code generation on mobile",
+        "issue": "After 1.2s post-DOMContentLoaded wait, page still shows 'Gerando seu código PIX...' spinner on all 4 mobile viewports; QR image, PIX copia-e-cola textarea, 'Copiar Código' and 'Imprimir Pagamento' buttons were NOT yet rendered so their mobile responsiveness could not be verified. Either the PIX endpoint is slow on mobile UA or requires state from prior pages. Not necessarily a bug, but flag for follow-up audit.",
+        "selector": "N/A (spinner state)",
+        "priority": "P3/INFO"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "inicio.html VAGAS table (bottom of page)",
+        "issues": ["Table columns are extremely narrow on mobile (CÓD/VAGA/ESCOLARIDADE/SA[LARIO] cramped, salary cell clipped to 'RS 2.9…' etc.). Text remains legible but the table looks squeezed. Consider allowing horizontal scroll on the table wrapper (overflow-x:auto on the containing div) for readability."]
+      },
+      {
+        "screen": "inicio.html header",
+        "issues": ["Audit could not detect an IGEDUC logo image or 'Área do Candidato' pill button in the header via DOM query (getBoundingClientRect returned 0). The 'CONCURSOS' title bar is present but the described hero (blue gradient + logo + Área do Candidato) does not appear on the served /inicio.html. Verify whether the review-request description reflects intended design vs. currently-rendered version."]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/test_reports/mobile_audit.py",
+    "/app/test_reports/mobile_audit_raw.json",
+    "/app/test_reports/screenshots/mobile/ (24 screenshots, 4 viewports x 6 pages)"
+  ],
+  "action_items": [
+    "P0: Add @media (max-width:640px) rule to confirmacao.html forcing tabela-confirmacao and its rows (tr>td groups) to display:block / single-column stacked so the value cells do not render off-screen. Currently only inscricao.html has the mobile media query.",
+    "P1: On inscricao-realizada.html, allow value cells to wrap or reduce left label width so 'PENDENTE DE PAGAMENTO' status pill and full 10-digit inscription number are visible on 360px screens (Galaxy S8+ and smaller Android devices).",
+    "P2: Increase confirmacao action button height to >=44px (currently 38px) for WCAG-compliant touch target on mobile.",
+    "P2: Consider overflow-x:auto wrapper on the inicio.html VAGAS table so users can horizontally scroll to read salary/escolaridade columns instead of them being crushed.",
+    "P2: Push VLibras widget above content bottom on mobile (bottom offset ~90px) so it doesn't overlap form values/paragraphs.",
+    "P3: Re-audit pagamento-pix mobile responsiveness after the spinner resolves (increase Playwright wait or seed a mock inscricao) — this iteration could not verify QR/textarea/buttons because generation was still in-flight."
+  ],
+  "critical_code_review_comments": [
+    "confirmacao.html appears to lack any @media (max-width:640px) rule for its 2-column table, unlike inscricao.html which does have one. This is the root cause of the P0 bug.",
+    "Multiple pages rely on the browser's default table auto-layout which does not gracefully collapse to mobile — consider a shared mobile.css or common media-query block imported into all pages instead of per-page inline rules.",
+    "Body/container likely uses overflow-x:hidden which masks the actual overflow (audit showed body.scrollWidth == viewportWidth even though child elements clearly extend to right=424 on a 360px screen). This hides bugs from casual visual QA — recommend using scroll-safe layout instead of clipping."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (backend skipped per request)", "frontend": "83% (5 of 6 pages pass all mobile assertions on >=375px; confirmacao fails on all 4 viewports; inscricao-realizada fails on 360px only)"},
+  "test_credentials": "N/A — public pages only.",
+  "seed_data_creation": "None.",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Full raw audit output is at /app/test_reports/mobile_audit_raw.json and screenshots at /app/test_reports/screenshots/mobile/ (24 PNGs, ~360KB avg). Run script: /opt/plugins-venv/bin/python /app/test_reports/mobile_audit.py (uses plugins-venv where playwright is installed; system python does NOT have playwright). Public site backend URL is REACT_APP_BACKEND_URL from /app/frontend/.env. Key finding: confirmacao.html mobile stacking is broken; verify @media rules after fix. For pagamento-pix re-audit, increase per-page wait to ~5s to let the PIX code generate.",
+  "rca of the issue": "confirmacao.html: root cause is a static 2-column HTML table with no @media (max-width:640px) rule to convert it to display:block, so on any viewport <= ~420px the right column (values) is positioned outside the container. Parent has overflow-x:hidden so users see labels but no values. Fix: add mobile media query to convert each <tr> to a block and each <td> to display:block width:100% text-align:left, similar to what /inscricao.html already does. inscricao-realizada.html on 360px: fixed label-column width leaves <150px for values; long strings like the status pill can't wrap because of white-space:nowrap on the pill. Fix: reduce label width or allow value column to wrap (white-space:normal on the status badge with word-break:break-word)."
+}

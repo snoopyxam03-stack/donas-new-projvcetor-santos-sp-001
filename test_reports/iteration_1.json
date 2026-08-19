@@ -1,0 +1,39 @@
+{
+  "summary": "End-to-end validation of Donas ENARE 2026 (recém importado). 17 backend pytest cases (100% pass) covering: páginas estáticas, admin login JWT, dashboard KPIs, tracking público, pix-config, pix/generate (BR Code EMV + QR PNG), settings, inscriptions e cadastros. Validação UI no painel admin: login, dashboard com KPIs, navegação Inscrições/Configurações, Pix key seedada visível.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Painel admin /donaspainel/ - Dashboard", "issues": ["Título exibe 'Dashboard - ASSEMBLEIA LEGISLATIVA DO CEARÁ' (parece nome de concurso hardcoded no bundle estático do painel; não reflete ENARE 2026). Verificar fonte (provavelmente settings ou bundle pre-built)."]},
+      {"screen": "Painel admin", "issues": ["Console warnings repetidas do Recharts: 'width(-1) and height(-1) of chart should be greater than 0' — funciona, mas indica container sem altura/largura definida em algum momento."]},
+      {"screen": "Página raiz (App.js shell)", "issues": ["Iframe que renderiza /home.html não possui atributo src visível (talvez setado via srcdoc/JS). Conteúdo renderiza corretamente, mas dificulta inspeção."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_donas_enare.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "(Opcional) Investigar de onde vem o título 'ASSEMBLEIA LEGISLATIVA DO CEARÁ' no Dashboard do painel — bundle estático em frontend/public/donaspainel/ pode ter sido pré-buildado de outro projeto. Substituir por título dinâmico (ex: settings.mensagem ou 'ENARE 2026').",
+    "(Opcional) Corrigir warnings do Recharts adicionando minWidth/minHeight no container do gráfico."
+  ],
+  "critical_code_review_comments": [
+    "admin_routes.py com 1460 linhas — excede limite recomendado de 700 linhas; considere dividir em módulos (auth, dashboard, tracking, pix, settings, inscriptions).",
+    "PUT /api/admin/settings aceita Dict[str, Any] sem validação Pydantic — qualquer chave pode ser persistida; recomenda-se whitelist ou modelo Pydantic explícito.",
+    "Endpoints públicos /api/pix-config e /api/pix/generate não têm rate limiting; em produção podem ser abusados para extrair config ou gerar muitos BR Codes."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_donas_enare.py (novo)"
+  ],
+  "success_rate": {"backend": "100% (17/17)", "frontend": "100% (login + dashboard + inscrições + settings)"},
+  "test_credentials": "admin: donas / Seinao10@@ (de /app/memory/test_credentials.md)",
+  "seed_data_creation": "Apenas 1 doc em coleção accesses criado pelo teste track/access (TEST agent não criou dados extras).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend test suite em /app/backend/tests/test_donas_enare.py cobre todos os fluxos críticos. Login admin é POST /api/admin/auth/login (não /api/auth/login). Painel admin React fica em /donaspainel/ (build estático em frontend/public/donaspainel/). Pix usa gerador local EMV (pix_generator.py) — BR Code típico ~152 chars, prefixo '000201', sufixo CRC '6304XXXX'. Settings Pix já semeadas com chave 'contato@enare-inscricoes.com.br'. DB collection inscricoes/cadastros começam vazias.",
+  "rca of the issue": "Sem bugs encontrados. Aplicação importada do GitHub está funcional 1:1. Único ponto de atenção é o título do Dashboard exibindo nome de outro concurso ('ASSEMBLEIA LEGISLATIVA DO CEARÁ') — provavelmente artefato do bundle estático pré-buildado em frontend/public/donaspainel/static/, não afeta funcionamento."
+}

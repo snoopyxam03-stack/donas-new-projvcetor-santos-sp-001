@@ -1,0 +1,33 @@
+{
+  "summary": "Verified visual regression on /inscricao-realizada and /pagamento-pix after the color-palette + subtitle refactor. Full flow /inscricao -> /confirmacao -> /inscricao-realizada -> /pagamento-pix executed. All subtitle text and button style assertions passed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "assertions_verified": [
+    "STEP1 form submission produced PMCA-2026-224725 with vaga '017 - SECRETÁRIO ESCOLAR - R$ 135,00' on /confirmacao (matches ^PMCA-2026-\\d{6}$).",
+    "STEP2 clicking btn-confirmar-inscricao and OK on success modal navigated to /inscricao-realizada; [data-testid=r-inscricao] equals same PMCA-2026-224725.",
+    "STEP3 /inscricao-realizada subtitle h2 = 'Concurso Público - Município de Campo Alegre (AL) - Edital nº 003/2026' — contains 'Campo Alegre', does NOT contain 'SECRETARIA MUNICIPAL DE SAÚDE' nor '003/2026-SMA'.",
+    "STEP3 [data-testid=btn-pagar-inscricao] computed styles: backgroundColor rgb(24, 88, 191), color rgb(255, 255, 255), 1px solid rgb(24, 88, 191). PASS.",
+    "STEP4 /pagamento-pix subtitle h2 = 'Concurso Público - Município de Campo Alegre (AL) - Edital nº 003/2026' — same conditions PASS.",
+    "STEP4 [data-testid=btn-copiar-codigo] bg rgb(24, 88, 191) / color rgb(255, 255, 255). PASS.",
+    "STEP4 [data-testid=btn-imprimir-pagamento] bg rgb(255, 255, 255) / color rgb(24, 88, 191) / border 1px solid rgb(24, 88, 191). PASS.",
+    "STEP4 #pix-loading spinner text 'Gerando seu código PIX...' color = rgb(24, 88, 191) (visible during loading). PASS."
+  ],
+  "test_report_links": [
+    "/app/test_reports/screenshots/inscricao_realizada.png",
+    "/app/test_reports/screenshots/pagamento_pix.png"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "CSP violation in browser console: Cloudflare beacon (static.cloudflareinsights.com/beacon.min.js) is blocked by script-src directive. Non-blocking but consider removing the third-party analytics injection or updating CSP if needed."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "100%"},
+  "seed_data_creation": "None (used CPF 529.982.247-25 to complete a fresh inscricao end-to-end).",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Both target pages now consistently show the Campo Alegre subtitle and use the #1858BF/#ffffff palette on all buttons and the PIX loading spinner. E2E flow works. Only leftover minor issue is a CSP-blocked Cloudflare beacon in console (harmless)."
+}
