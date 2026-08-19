@@ -1,0 +1,14 @@
+{
+  "summary": "Frontend-only static home /inicio.html verified. First card is concurso-79 (SANTOS 79/2026, 216 vagas) with edital, inscrições 05/08/2026 a 10/09/2026, selo 'INSCRIÇÕES ABERTAS!', isenção 05/08 a 06/08. Cards order: 79,70,71,72,73,74 (all SEPLA-RH). Pagination 'Mostrando 1-6 de 6'. All IBAM layout data-testids present: brand-logo, area-candidato-btn, filter-abertas (class contains 'active'), search-input, search-btn, whatsapp-float. No presence of Mauá/Guarulhos/Bebedouro.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Static home /inicio.html verified for content order, vagas counts, layout testids and pagination."
+}
